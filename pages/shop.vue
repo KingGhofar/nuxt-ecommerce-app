@@ -4,7 +4,7 @@ const cart = useCartStore()
 const { products, categories } = useProducts()
 
 useSeoMeta({
-  title: 'Shop — Verdura',
+  title: 'Shop — Cungpruy',
   description: 'Browse our full range of fresh, organic vegetables.',
 })
 
@@ -28,14 +28,6 @@ const filteredProducts = computed(() => {
     list = list.filter(p => p.category === activeCategory.value)
   }
 
-  if (search.value.trim()) {
-    const q = search.value.toLowerCase()
-    list = list.filter(p =>
-      p.name.toLowerCase().includes(q) ||
-      p.description.toLowerCase().includes(q) ||
-      p.tags.some(t => t.includes(q))
-    )
-  }
 
   switch (sortBy.value) {
     case 'price-asc':  return list.sort((a, b) => a.price - b.price)
@@ -52,7 +44,6 @@ function addToCart(product: any) {
     id: product.id,
     name: product.name,
     price: product.price,
-    unit: product.unit,
     image: product.image,
   })
   addedIds.value.add(product.id)
@@ -65,7 +56,6 @@ function addToCart(product: any) {
 
     <!-- Page Header -->
     <div class="mb-10">
-      <p class="font-body text-sm font-medium text-sage uppercase tracking-widest mb-2">Our Selection</p>
       <h1 class="font-display text-4xl md:text-5xl font-bold text-charcoal">Fresh Market</h1>
     </div>
 
@@ -79,7 +69,7 @@ function addToCart(product: any) {
         <input
           v-model="search"
           type="text"
-          placeholder="Search vegetables, herbs, mushrooms…"
+          placeholder="Search…"
           class="input-field pl-11"
         />
         <button v-if="search" @click="search = ''" class="absolute right-4 top-1/2 -translate-y-1/2 text-earth-40 hover:text-earth transition-colors">✕</button>
@@ -125,17 +115,12 @@ function addToCart(product: any) {
             {{ product.badge }}
           </span>
           <span v-if="!product.inStock" class="badge absolute top-3 right-3 bg-red-100 text-red-600">Out of Stock</span>
-          <!-- Origin overlay -->
-          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-            <p class="font-body text-xs text-white">📍 {{ product.origin }}</p>
-          </div>
         </div>
 
         <!-- Content -->
         <div class="p-4">
           <div class="flex items-start justify-between mb-1">
             <h3 class="font-display font-semibold text-charcoal text-sm leading-snug">{{ product.name }}</h3>
-            <span class="text-xl ml-2 flex-shrink-0">{{ product.emoji }}</span>
           </div>
           <span class="font-body text-xs text-sage font-medium">{{ product.category }}</span>
 
@@ -153,7 +138,6 @@ function addToCart(product: any) {
           <div class="flex items-center justify-between">
             <div>
               <span class="font-display font-bold text-forest text-lg">${{ product.price.toFixed(2) }}</span>
-              <span class="font-body text-xs text-earth ml-1">{{ product.unit }}</span>
             </div>
 
             <button

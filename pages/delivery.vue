@@ -1,5 +1,5 @@
 <script setup lang="ts">
-useSeoMeta({ title: 'Delivery Info — Verdura' })
+useSeoMeta({ title: 'Delivery Info — Cungpruy' })
 </script>
 
 <template>

@@ -20,15 +20,14 @@ const navLinks = [
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
 
         <NuxtLink to="/" class="flex items-center gap-2">
-          <span class="text-xl">🌿</span>
-          <span class="font-display text-xl font-bold text-forest">Verdura</span>
+          <span class="font-display text-xl font-bold text-forest">Cungpruy</span>
         </NuxtLink>
 
         <nav class="hidden md:flex items-center gap-8">
           <NuxtLink
             v-for="link in navLinks" :key="link.to" :to="link.to"
-            class="font-body font-medium text-earth hover:text-forest transition-colors"
-            active-class="text-forest"
+            class="font-body font-medium text-green-700 hover:text-forest transition-colors"
+            active-class="text-aeonik"
           >{{ link.label }}</NuxtLink>
         </nav>
 
@@ -38,9 +37,6 @@ const navLinks = [
             @click="cart.toggleCart()"
             class="relative flex items-center gap-2 bg-forest text-cream px-4 py-2 rounded-full font-body text-sm hover:bg-forest-light transition-colors"
           >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
-            </svg>
             <span class="hidden sm:inline">Cart</span>
             <span
               v-if="cart.totalItems > 0"

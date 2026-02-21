@@ -3,7 +3,7 @@ import { useCartStore } from '~/stores/cart'
 const cart = useCartStore()
 const router = useRouter()
 
-useSeoMeta({ title: 'Checkout — Verdura' })
+useSeoMeta({ title: 'Checkout — Cungpruy' })
 
 const confirmed = ref(false)
 const orderNumber = ref('')
@@ -22,9 +22,6 @@ function placeOrder() {
   cart.clearCart()
 }
 
-if (process.client && cart.items.length === 0 && !confirmed.value) {
-  router.push('/shop')
-}
 </script>
 
 <template>

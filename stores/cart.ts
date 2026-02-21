@@ -4,7 +4,6 @@ export interface CartItem {
   id: number
   name: string
   price: number
-  unit: string
   quantity: number
   image: string
 }
