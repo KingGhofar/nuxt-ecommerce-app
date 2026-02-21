@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Map from '~/components/svg/Map.vue';
 useSeoMeta({ title: 'Our Story — Cungpruy' })
 
 const team = [
@@ -17,7 +18,6 @@ const farms = [
 
 <template>
   <div>
-
     <!-- Hero -->
     <section class="bg-forest py-24 relative overflow-hidden">
       <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 70% 50%, #87A96B 0%, transparent 60%)"></div>
@@ -88,16 +88,16 @@ const farms = [
     <section class="py-16 bg-forest">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-          <p class="font-body text-sm font-medium text-sage uppercase tracking-widest mb-2">Mitra Kami</p>
-          <h2 class="font-display text-3xl font-bold text-cream">Vendor Pertanian Sehat</h2>
+          <p class="font-body text-sm font-medium text-sage uppercase tracking-widest mb-2">Our Partners</p>
+          <h2 class="font-display text-3xl font-bold text-cream">The Farms Behind Your Food</h2>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <div v-for="farm in farms" :key="farm.name" class="bg-white/10 rounded-2xl p-6 border border-white/10">
             <h4 class="font-display font-semibold text-cream mb-1">{{ farm.name }}</h4>
-            <p class="font-body text-sage text-sm mb-3">{{ farm.specialty }}</p>
+            <p class="font-body text-gray-200 text-sm mb-3">{{ farm.specialty }}</p>
             <div class="flex gap-4 font-body text-xs text-cream-50">
-              <span>📍 {{ farm.distance }}</span>
-              <span>Since {{ farm.since }}</span>
+              <span class="flex items-center gap-1"><Map :size="12" color="currentColor" /> {{ farm.distance }}</span>
+              <span class="flex items-center">Since {{ farm.since }}</span>
             </div>
           </div>
         </div>
@@ -107,11 +107,10 @@ const farms = [
     <!-- CTA -->
     <section class="py-20 text-center max-w-2xl mx-auto px-4">
       <h2 class="section-title mb-4">Ready to Taste the Difference?</h2>
-      <p class="font-body text-earth mb-8">Join 12,000+ households who've made the switch to genuinely fresh produce.</p>
+      <p class="font-body text-earth mb-8">Join 1,000+ households who've made the switch to genuinely fresh produce.</p>
       <NuxtLink to="/shop" class="btn-primary text-base px-10 py-4">
         Shop Fresh Produce
       </NuxtLink>
     </section>
-
   </div>
 </template>

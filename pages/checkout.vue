@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import Leaf from '~/components/svg/Leaf.vue'
+import Recycle from '~/components/svg/Recycle.vue'
 import { useCartStore } from '~/stores/cart'
 const cart = useCartStore()
 const router = useRouter()
@@ -29,7 +31,6 @@ function placeOrder() {
 
     <!-- Confirmed -->
     <div v-if="confirmed" class="text-center py-20 max-w-md mx-auto">
-      <span class="text-6xl block mb-5">🌿</span>
       <h1 class="font-display text-3xl font-bold text-charcoal mb-2">Order Confirmed!</h1>
       <p class="font-body text-earth mb-1">Order <strong class="text-forest">{{ orderNumber }}</strong> has been placed.</p>
       <p class="font-body text-sm text-earth-60 mb-8">Check your email for confirmation.</p>
@@ -45,25 +46,25 @@ function placeOrder() {
 
         <!-- Contact -->
         <div class="bg-white rounded-2xl p-6" style="border: 1px solid rgba(139,94,60,0.1);">
-          <h2 class="font-display text-lg font-semibold text-charcoal mb-4">Contact</h2>
+          <h2 class="font-aeonik text-xl font-semibold text-charcoal mb-4">Contact</h2>
           <div class="space-y-3">
             <div>
               <label class="font-body text-sm font-medium text-charcoal block mb-1">Full Name</label>
-              <input v-model="form.name" type="text" placeholder="Jane Doe" class="input-field" />
+              <input v-model="form.name" type="text" placeholder="John Doe" class="input-field" />
             </div>
             <div>
               <label class="font-body text-sm font-medium text-charcoal block mb-1">Email</label>
-              <input v-model="form.email" type="email" placeholder="jane@email.com" class="input-field" />
+              <input v-model="form.email" type="email" placeholder="john@email.com" class="input-field" />
             </div>
           </div>
         </div>
 
         <!-- Address -->
         <div class="bg-white rounded-2xl p-6" style="border: 1px solid rgba(139,94,60,0.1);">
-          <h2 class="font-display text-lg font-semibold text-charcoal mb-4">Delivery Address</h2>
+          <h2 class="font-aeonik text-lg font-semibold text-charcoal mb-4">Delivery Address</h2>
           <div class="space-y-3">
             <div>
-              <label class="font-body text-sm font-medium text-charcoal block mb-1">Street Address</label>
+              <label class="font-body text-sm font-semibold text-charcoal block mb-1">Street Address</label>
               <input v-model="form.address" type="text" placeholder="123 Garden Lane" class="input-field" />
             </div>
             <div class="grid grid-cols-2 gap-3">
@@ -82,7 +83,7 @@ function placeOrder() {
         <button @click="placeOrder" class="btn-gold w-full justify-center py-3.5 text-base">
           Place Order · ${{ cart.total.toFixed(2) }}
         </button>
-        <p class="font-body text-xs text-center text-earth-50">🔒 Secure checkout</p>
+        <p class="font-body text-xs text-center text-earth-50">Secure checkout</p>
       </div>
 
       <!-- Right: Order summary -->
@@ -111,7 +112,7 @@ function placeOrder() {
                 {{ cart.subtotal >= 50 ? 'FREE' : '$4.99' }}
               </span>
             </div>
-            <div class="flex justify-between font-display font-bold text-charcoal pt-2" style="border-top: 1px solid rgba(139,94,60,0.1);">
+            <div class="flex justify-between font-aeonik font-bold text-charcoal pt-2" style="border-top: 1px solid rgba(139,94,60,0.1);">
               <span>Total</span>
               <span class="text-forest">${{ cart.total.toFixed(2) }}</span>
             </div>

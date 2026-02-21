@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Basket from '~/components/svg/Basket.vue';
 import { useCartStore } from '~/stores/cart'
 const cart = useCartStore()
 const route = useRoute()
@@ -91,7 +92,7 @@ const navLinks = [
         <div class="flex-1 overflow-y-auto px-5 py-4 space-y-3">
           <!-- Empty -->
           <div v-if="cart.items.length === 0" class="flex flex-col items-center justify-center h-full gap-3 text-earth-50">
-            <span class="text-5xl">🧺</span>
+            <Basket class="w-9 h-9" />
             <p class="font-body text-earth">Your basket is empty</p>
             <button @click="cart.closeCart(); $router.push('/shop')" class="btn-primary text-sm">
               Browse Shop
