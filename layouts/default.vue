@@ -33,6 +33,17 @@ const navLinks = [
         </nav>
 
         <div class="flex items-center gap-2">
+          <!-- Support -->
+          <NuxtLink
+            to="/support"
+            class="hidden sm:flex items-center gap-1.5 font-body text-sm font-medium text-earth hover:text-forest transition-colors px-3 py-2 rounded-full hover:bg-sage-10"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+            </svg>
+            Support
+          </NuxtLink>
+
           <!-- Cart -->
           <button
             @click="cart.toggleCart()"
@@ -77,9 +88,6 @@ const navLinks = [
           <span class="font-body text-sm" style="color:rgba(250,246,238,0.5)">© {{ new Date().getFullYear() }}</span>
         </div>
         <div class="flex gap-6 font-body text-sm" style="color:rgba(250,246,238,0.5)">
-          <NuxtLink to="/shop" class="hover:text-cream transition-colors">Shop</NuxtLink>
-          <NuxtLink to="/about" class="hover:text-cream transition-colors">About</NuxtLink>
-          <NuxtLink to="/delivery" class="hover:text-cream transition-colors">Delivery</NuxtLink>
           <NuxtLink to="/not-found" class="hover:text-cream transition-colors">404</NuxtLink>
         </div>
       </div>
