@@ -89,10 +89,10 @@ function addToCart(product: any) {
           </div>
           <div class="space-y-4 mt-8">
             <div class="rounded-2xl overflow-hidden h-64 shadow-xl shadow-black/20">
-              <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=360&q=75" alt="Salad bowl" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+              <img loading="lazy" decoding="async" src="https://i.pinimg.com/1200x/1b/04/fc/1b04fc4b0dbb8bd66c98d85bdb9c345d.jpg" alt="Salad bowl" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
             </div>
             <div class="rounded-2xl overflow-hidden h-48 shadow-xl shadow-black/20">
-              <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1574316071802-0d684efa7bf5?w=360&q=75" alt="Carrots" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+              <img loading="lazy" decoding="async" src="https://i.pinimg.com/1200x/e3/67/05/e36705fb3a2b4268771c102a84196f36.jpg" alt="Carrots" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
             </div>
           </div>
         </div>
@@ -220,7 +220,7 @@ function addToCart(product: any) {
             </NuxtLink>
           </div>
           <div class="relative h-64 lg:h-auto">
-            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1557844352-761f2565b576?w=360&q=75" alt="Seasonal vegetables" class="w-full h-full object-cover" />
+            <img loading="lazy" decoding="async" src="https://i.pinimg.com/736x/5f/94/47/5f9447e9b25c1df08e75faa26a06d84a.jpg" alt="Seasonal vegetables" class="w-full h-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-r from-cream-dark/60 lg:from-transparent to-transparent"></div>
           </div>
         </div>

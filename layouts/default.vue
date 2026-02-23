@@ -68,6 +68,22 @@ const navLinks = [
     <!-- Page content -->
     <main class="flex-1"><slot /></main>
 
+    <!-- Footer -->
+    <footer class="bg-charcoal py-6 mt-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <span class="font-display font-bold text-cream">Cungpruy</span>
+          <span class="font-body text-sm mx-2" style="color:rgba(250,246,238,0.4)">·</span>
+          <span class="font-body text-sm" style="color:rgba(250,246,238,0.5)">© {{ new Date().getFullYear() }}</span>
+        </div>
+        <div class="flex gap-6 font-body text-sm" style="color:rgba(250,246,238,0.5)">
+          <NuxtLink to="/shop" class="hover:text-cream transition-colors">Shop</NuxtLink>
+          <NuxtLink to="/about" class="hover:text-cream transition-colors">About</NuxtLink>
+          <NuxtLink to="/delivery" class="hover:text-cream transition-colors">Delivery</NuxtLink>
+          <NuxtLink to="/not-found" class="hover:text-cream transition-colors">404</NuxtLink>
+        </div>
+      </div>
+    </footer>
 
     <!-- Cart Drawer -->
     <Teleport to="body">
