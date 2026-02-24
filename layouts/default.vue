@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import Basket from '~/components/svg/Basket.vue';
+import Map from '~/components/svg/Map.vue';
+import Clock from '~/components/svg/Clock.vue';
+import Mail from '~/components/svg/Mail.vue';
+import Phone from '~/components/svg/Phone.vue';
+import ChatQuestion from '~/components/svg/ChatQuestion.vue';
 import { useCartStore } from '~/stores/cart'
 const cart = useCartStore()
 const route = useRoute()
@@ -19,11 +24,9 @@ const navLinks = [
     <!-- Navbar -->
     <header class="sticky top-0 z-40 bg-cream shadow-sm" style="border-bottom: 1px solid rgba(139,94,60,0.1);">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
-
         <NuxtLink to="/" class="flex items-center gap-2">
           <span class="font-display text-xl font-bold text-forest">Cungpruy</span>
         </NuxtLink>
-
         <nav class="hidden md:flex items-center gap-8">
           <NuxtLink
             v-for="link in navLinks" :key="link.to" :to="link.to"
@@ -31,17 +34,14 @@ const navLinks = [
             active-class="text-aeonik"
           >{{ link.label }}</NuxtLink>
         </nav>
-
         <div class="flex items-center gap-2">
           <!-- Support -->
           <NuxtLink
             to="/support"
             class="hidden sm:flex items-center gap-1.5 font-body text-sm font-medium text-earth hover:text-forest transition-colors px-3 py-2 rounded-full hover:bg-sage-10"
           >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-            </svg>
-            Support
+            <ChatQuestion class="w-4 h-4" />
+            Chat
           </NuxtLink>
 
           <!-- Cart -->
@@ -78,17 +78,69 @@ const navLinks = [
 
     <!-- Page content -->
     <main class="flex-1"><slot /></main>
-
     <!-- Footer -->
-    <footer class="bg-charcoal py-6 mt-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <div class="flex items-center gap-2">
-          <span class="font-display font-bold text-cream">Cungpruy</span>
-          <span class="font-body text-sm mx-2" style="color:rgba(250,246,238,0.4)">·</span>
-          <span class="font-body text-sm" style="color:rgba(250,246,238,0.5)">© {{ new Date().getFullYear() }}</span>
+    <footer class="bg-charcoal mt-16">
+      <!-- Main Footer -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <!-- Brand -->
+        <div class="lg:col-span-1">
+          <span class="font-display text-xl font-bold text-cream block mb-3">Cungpruy</span>
         </div>
-        <div class="flex gap-6 font-body text-sm" style="color:rgba(250,246,238,0.5)">
-          <NuxtLink to="/not-found" class="hover:text-cream transition-colors">404</NuxtLink>
+        <!-- Menu -->
+        <div>
+          <h5 class="font-body font-semibold text-cream text-sm uppercase tracking-widest mb-4">Menu</h5>
+          <ul class="space-y-2.5">
+            <li><NuxtLink to="/shop" class="font-body text-sm hover:text-cream transition-colors" style="color:rgba(250,246,238,0.55)">Shop</NuxtLink></li>
+            <li><NuxtLink to="/about" class="font-body text-sm hover:text-cream transition-colors" style="color:rgba(250,246,238,0.55)">About</NuxtLink></li>
+            <li><NuxtLink to="/delivery" class="font-body text-sm hover:text-cream transition-colors" style="color:rgba(250,246,238,0.55)">Delivery</NuxtLink></li>
+            <li>
+              <button @click="cart.toggleCart()" class="font-body text-sm hover:text-cream transition-colors" style="color:rgba(250,246,238,0.55)">Cart</button>
+            </li>
+            <li><NuxtLink to="/support" class="font-body text-sm hover:text-cream transition-colors" style="color:rgba(250,246,238,0.55)">Chat</NuxtLink></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h5 class="font-body font-semibold text-cream text-sm uppercase tracking-widest mb-4">Kontak</h5>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-2.5">
+              <Mail class="w-4 h-4 mt-0.5 flex-shrink-0" style="color:rgba(250,246,238,0.4)" />
+              <span class="font-body text-sm" style="color:rgba(250,246,238,0.55)">Cungpruy@gmail.com</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <Phone class="w-4 h-4 mt-0.5 flex-shrink-0" style="color:rgba(250,246,238,0.4)" />
+              <span class="font-body text-sm" style="color:rgba(250,246,238,0.55)">+62 812-3456-7890</span>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="font-body font-semibold text-cream text-sm uppercase tracking-widest mb-4">Toko Kami</h5>
+          <!-- Alamat -->
+          <div class="flex items-start gap-2.5 mb-4">
+            <Map class="w-4 h-4" style="color:rgba(250,246,238,0.55)"/>
+            <span class="font-body text-sm leading-relaxed" style="color:rgba(250,246,238,0.55)">
+              Jl. Sayur Mayur No. 12,<br>Purwokerto, Jawa Tengah
+            </span>
+          </div>
+
+          <!-- Jam Buka -->
+          <div class="flex items-start gap-2.5">
+            <Clock class="w-4 h-4" style="color:rgba(250,246,238,0.55)"/>
+            <div>
+              <p class="font-body text-sm font-medium text-cream mb-1">Jam Buka</p>
+              <p class="font-body text-sm" style="color:rgba(250,246,238,0.55)">Senin — Sabtu</p>
+              <p class="font-body text-sm" style="color:rgba(250,246,238,0.55)">08.00 — 17.00 WIB</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="border-t" style="border-color:rgba(250,246,238,0.08)">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p class="font-body text-xs" style="color:rgba(250,246,238,0.35)">© {{ new Date().getFullYear() }} Cungpruy. All rights reserved.</p>
+          <NuxtLink to="/not-found" class="font-body text-xs transition-colors" style="color:rgba(250,246,238,0.25)" >404</NuxtLink>
         </div>
       </div>
     </footer>
@@ -143,7 +195,7 @@ const navLinks = [
           </div>
         </div>
 
-        <!-- Footer -->
+        <!-- Footer cart -->
         <div v-if="cart.items.length > 0" class="px-5 py-4 space-y-3" style="border-top: 1px solid rgba(139,94,60,0.1);">
           <div class="flex justify-between font-body text-sm text-earth">
             <span>Subtotal</span><span>${{ cart.subtotal.toFixed(2) }}</span>
@@ -167,6 +219,5 @@ const navLinks = [
         </div>
       </div>
     </Teleport>
-
   </div>
 </template>
