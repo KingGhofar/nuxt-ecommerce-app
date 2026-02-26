@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import Basket from '~/components/svg/Basket.vue';
-import { useCartStore } from '~/stores/cart'
+import { ref, watch } from 'vue'
+import Basket from '../components/svg/Basket.vue';
+import { useCartStore } from '../stores/cart'
+
 const cart = useCartStore()
 const route = useRoute()
 const mobileMenuOpen = ref(false)
@@ -17,7 +19,7 @@ const navLinks = [
   <div class="min-h-screen flex flex-col">
 
     <!-- Navbar -->
-    <header class="sticky top-0 z-40 bg-cream shadow-sm" style="border-bottom: 1px solid rgba(139,94,60,0.1);">
+    <header class="sticky top-0 z-40 bg-cream shadow-sm border">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
 
         <NuxtLink to="/" class="flex items-center gap-2">
@@ -33,7 +35,7 @@ const navLinks = [
         </nav>
 
         <div class="flex items-center gap-2">
-          <!-- Support -->
+          <!-- chat -->
           <NuxtLink
             to="/support"
             class="hidden sm:flex items-center gap-1.5 font-body text-sm font-medium text-earth hover:text-forest transition-colors px-3 py-2 rounded-full hover:bg-sage-10"
@@ -41,7 +43,7 @@ const navLinks = [
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
             </svg>
-            Support
+            Chat
           </NuxtLink>
 
           <!-- Login -->
@@ -99,8 +101,8 @@ const navLinks = [
         <!-- Brand -->
         <div class="lg:col-span-1">
           <span class="font-display text-xl font-bold text-cream block mb-3">Cungpruy</span>
-          <p class="font-body text-sm leading-relaxed" style="color:rgba(250,246,238,0.55)">
-            Sayuran segar langsung dari petani lokal ke meja makanmu. Organik, sehat, dan terpercaya.
+          <p class="font-body text-sm leading-relaxed text-gray-400">
+            Sayuran segar langsung dari petani lokal.
           </p>
         </div>
 
@@ -108,13 +110,13 @@ const navLinks = [
         <div>
           <h5 class="font-body font-semibold text-cream text-sm uppercase tracking-widest mb-4">Menu</h5>
           <ul class="space-y-2.5">
-            <li><NuxtLink to="/shop" class="font-body text-sm hover:text-cream transition-colors" style="color:rgba(250,246,238,0.55)">Shop</NuxtLink></li>
-            <li><NuxtLink to="/about" class="font-body text-sm hover:text-cream transition-colors" style="color:rgba(250,246,238,0.55)">About</NuxtLink></li>
-            <li><NuxtLink to="/delivery" class="font-body text-sm hover:text-cream transition-colors" style="color:rgba(250,246,238,0.55)">Delivery</NuxtLink></li>
+            <li><NuxtLink to="/shop" class="font-body text-sm hover:text-cream transition-colors text-gray-400">Shop</NuxtLink></li>
+            <li><NuxtLink to="/about" class="font-body text-sm hover:text-cream transition-colors text-gray-400">About</NuxtLink></li>
+            <li><NuxtLink to="/delivery" class="font-body text-sm hover:text-cream transition-colors text-gray-400">Delivery</NuxtLink></li>
             <li>
-              <button @click="cart.toggleCart()" class="font-body text-sm hover:text-cream transition-colors" style="color:rgba(250,246,238,0.55)">Cart</button>
+              <button @click="cart.toggleCart()" class="font-body text-sm hover:text-cream transition-colors text-gray-400">Cart</button>
             </li>
-            <li><NuxtLink to="/support" class="font-body text-sm hover:text-cream transition-colors" style="color:rgba(250,246,238,0.55)">Chat Support</NuxtLink></li>
+            <li><NuxtLink to="/chat" class="font-body text-sm hover:text-cream transition-colors text-gray-400">Chat</NuxtLink></li>
           </ul>
         </div>
 
@@ -126,13 +128,13 @@ const navLinks = [
               <svg class="w-4 h-4 mt-0.5 flex-shrink-0" style="color:rgba(250,246,238,0.4)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
               </svg>
-              <span class="font-body text-sm" style="color:rgba(250,246,238,0.55)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6109000d0e2102140f06111314184f0805">[email&#160;protected]</a></span>
+              <span class="font-body text-sm text-gray-400">cungpret@gmail.com</span>
             </li>
             <li class="flex items-start gap-2.5">
               <svg class="w-4 h-4 mt-0.5 flex-shrink-0" style="color:rgba(250,246,238,0.4)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
               </svg>
-              <span class="font-body text-sm" style="color:rgba(250,246,238,0.55)">+62 812-3456-7890</span>
+              <span class="font-body text-sm text-gray-400">+62 812-3456-7890</span>
             </li>
           </ul>
         </div>
@@ -147,7 +149,7 @@ const navLinks = [
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
             </svg>
-            <span class="font-body text-sm leading-relaxed" style="color:rgba(250,246,238,0.55)">
+            <span class="font-body text-sm leading-relaxed text-gray-400">
               Jl. Sayur Mayur No. 12,<br>Purwokerto, Jawa Tengah
             </span>
           </div>
@@ -159,20 +161,18 @@ const navLinks = [
             </svg>
             <div>
               <p class="font-body text-sm font-medium text-cream mb-1">Jam Buka</p>
-              <p class="font-body text-sm" style="color:rgba(250,246,238,0.55)">Senin — Sabtu</p>
-              <p class="font-body text-sm" style="color:rgba(250,246,238,0.55)">08.00 — 17.00 WIB</p>
-              <p class="font-body text-xs mt-1.5 px-2 py-0.5 rounded-full inline-block" style="background:rgba(135,169,107,0.15);color:#87A96B;">Minggu Tutup</p>
+              <p class="font-body text-sm text-gray-400">Senin — Sabtu</p>
+              <p class="font-body text-sm text-gray-400">08.00 — 17.00 WIB</p>
             </div>
           </div>
         </div>
-
       </div>
 
       <!-- Bottom bar -->
       <div class="border-t" style="border-color:rgba(250,246,238,0.08)">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p class="font-body text-xs" style="color:rgba(250,246,238,0.35)">© {{ new Date().getFullYear() }} Cungpruy. All rights reserved.</p>
-          <NuxtLink to="/not-found" class="font-body text-xs transition-colors" style="color:rgba(250,246,238,0.25)" >404</NuxtLink>
+          <p class="font-body text-xs text-gray-400">© {{ new Date().getFullYear() }} Cungpruy. All rights reserved.</p>
+          <NuxtLink to="/not-found" class="font-body text-xs transition-colors text-gray-400" >404</NuxtLink>
         </div>
       </div>
 

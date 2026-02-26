@@ -1,6 +1,13 @@
 <script setup lang="ts">
+import ArrowLeft from '~/components/svg/ArrowLeft.vue'
+
 definePageMeta({ layout: 'auth' })
-useSeoMeta({ title: 'Masuk — Cungpruy', robots: 'noindex' })
+useSeoMeta({ title: 'Login — Cungpruy', robots: 'noindex' })
+
+const router = useRouter()
+
+// STEP CONTROL
+const step = ref<number>(1)
 
 const email = ref('')
 const password = ref('')
@@ -25,26 +32,18 @@ function handleLogin() {
 <template>
   <div class="h-screen overflow-hidden flex items-center justify-center bg-gray-50 p-10">
     <div class="w-full max-w-[1130px] h-[714px] rounded-[32px] overflow-hidden shadow-2xl flex">
-
-      <!-- ───── LEFT 50%: Login Form ───── -->
+      <!-- left -->
       <div class="w-1/2 bg-white flex flex-col justify-center px-14 overflow-hidden">
 
         <!-- Back -->
-        <NuxtLink to="/auth" class="flex items-center gap-2 text-earth hover:text-forest transition-colors mb-8 font-body text-sm">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-          </svg>
-          Kembali
-        </NuxtLink>
-
-        <!-- Logo -->
-        <span class="font-display font-bold text-charcoal text-lg">Cungpruy</span>
-
-        <h1 class="font-display text-xl font-bold text-charcoal mb-1">Sign in to your account</h1>
-        <p class="font-body text-sm text-earth mb-7">
-          Belum punya akun?
-          <NuxtLink to="/auth/register" class="text-forest font-medium underline">Daftar sekarang</NuxtLink>
-        </p>
+        <button
+          class="absolute top-4 left-4 text-sm font-semibold flex items-center gap-1 cursor-pointer"
+          @click="step === 1 ? router.back() : step--"
+        >
+          <ArrowLeft />
+          <span>Back</span> 
+        </button>
+        <h1 class="font-display text-3xl font-bold text-charcoal mb-6">Login</h1>
 
         <!-- Error -->
         <div v-if="error" class="mb-4 px-4 py-3 bg-red-50 border border-red-200 rounded-xl font-body text-sm text-red-600">
@@ -58,7 +57,7 @@ function handleLogin() {
             <input
               v-model="email"
               type="email"
-              placeholder="kamu@email.com"
+              placeholder="fadhlanghifary@email.com"
               @keyup.enter="handleLogin"
               class="w-full px-4 py-3 rounded-xl font-body text-sm text-charcoal focus:outline-none focus:ring-2 focus:ring-forest transition-all"
               style="border: 1.5px solid rgba(139,94,60,0.2); background: #fafaf9;"
@@ -132,20 +131,20 @@ function handleLogin() {
         </div>
       </div>
 
-      <!-- ───── RIGHT 50%: Hero panel ───── -->
+      <!-- Right -->
       <div class="w-1/2 relative bg-forest overflow-hidden flex flex-col justify-between p-12">
         <div class="absolute inset-0 pointer-events-none">
-          <div class="absolute inset-0" style="background: radial-gradient(ellipse at 30% 20%, rgba(135,169,107,0.3) 0%, transparent 60%), radial-gradient(ellipse at 80% 80%, rgba(74,124,89,0.4) 0%, transparent 50%);"></div>
-          <div class="absolute inset-0 opacity-5" style="background-image: linear-gradient(rgba(250,246,238,1) 1px, transparent 1px), linear-gradient(90deg, rgba(250,246,238,1) 1px, transparent 1px); background-size: 40px 40px;"></div>
-          <div class="absolute -top-20 -right-20 w-80 h-80 rounded-full" style="background: rgba(135,169,107,0.15);"></div>
-          <div class="absolute -bottom-16 -left-16 w-64 h-64 rounded-full" style="background: rgba(74,124,89,0.2);"></div>
+          <div class="absolute inset-0"></div>
+          <div class="absolute inset-0 opacity-5"></div>
+          <div class="absolute -top-20 -right-20 w-80 h-80 rounded-full"></div>
+          <div class="absolute -bottom-16 -left-16 w-64 h-64 rounded-full"></div>
         </div>
         <div class="relative z-10">
           <h2 class="font-display text-3xl font-bold text-cream mb-3 leading-tight">
             Masuk &amp; Nikmati<br>
             <span style="color: #a3be8c;">Pengalaman Berbelanja</span>
           </h2>
-          <p class="font-body text-sm leading-relaxed mb-5" style="color: rgba(250,246,238,0.65);">
+          <p class="font-body text-sm leading-relaxed mb-5">
             Akses riwayat pesanan, lacak pengiriman, dan checkout lebih cepat.
           </p>
           <ul class="space-y-2">
@@ -155,12 +154,11 @@ function handleLogin() {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
                 </svg>
               </div>
-              <span class="font-body text-sm" style="color: rgba(250,246,238,0.75);">{{ feat }}</span>
+              <span class="font-body text-sm">{{ feat }}</span>
             </li>
           </ul>
         </div>
       </div>
-
     </div>
   </div>
 </template>

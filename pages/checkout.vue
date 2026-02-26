@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import Leaf from '~/components/svg/Leaf.vue'
-import Recycle from '~/components/svg/Recycle.vue'
-import { useCartStore } from '~/stores/cart'
+import { ref, reactive } from 'vue'
+import Leaf from '../components/svg/Leaf.vue'
+import Recycle from '../components/svg/Recycle.vue'
+import { useCartStore } from '../stores/cart'
+
 const cart = useCartStore()
 const router = useRouter()
 

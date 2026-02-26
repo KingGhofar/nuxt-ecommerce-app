@@ -1,6 +1,13 @@
 <script setup lang="ts">
+
+import ArrowLeft from '~/components/svg/ArrowLeft.vue'
 definePageMeta({ layout: 'auth' })
-useSeoMeta({ title: 'Daftar — Cungpruy', robots: 'noindex' })
+useSeoMeta({ title: 'Register — Cungpruy', robots: 'noindex' })
+
+const router = useRouter()
+
+// STEP CONTROL
+const step = ref<number>(1)
 
 const name = ref('')
 const email = ref('')
@@ -35,22 +42,19 @@ function handleRegister() {
 <template>
   <div class="h-screen overflow-hidden flex items-center justify-center bg-gray-50 p-10">
     <div class="w-full max-w-[1130px] h-[714px] rounded-[32px] overflow-hidden shadow-2xl flex">
-
-      <!-- ───── LEFT 50%: Register Form ───── -->
+      <!-- Left -->
       <div class="w-1/2 bg-white flex flex-col justify-center px-14 overflow-hidden">
 
         <!-- Back -->
-        <NuxtLink to="/auth" class="flex items-center gap-2 text-earth hover:text-forest transition-colors mb-7 font-body text-sm">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-          </svg>
-          Kembali
-        </NuxtLink>
-
-        <!-- Logo -->
-        <span class="font-display font-bold text-charcoal text-lg">Cungpruy</span>
-
-        <h1 class="font-display text-3xl font-bold text-charcoal mb-1">Create an account</h1>
+        <!-- Back -->
+        <button
+          class="absolute top-4 left-4 text-sm font-semibold flex items-center gap-1 cursor-pointer"
+          @click="step === 1 ? router.back() : step--"
+        >
+          <ArrowLeft />
+          <span>Back</span> 
+        </button>
+        <h1 class="font-display text-3xl font-bold text-charcoal mb-1">Buat Akun</h1>
         <p class="font-body text-sm text-earth mb-5">
           Sudah punya akun?
           <NuxtLink to="/auth/login" class="text-forest font-medium underline">Masuk di sini</NuxtLink>
@@ -69,7 +73,7 @@ function handleRegister() {
             <input
               v-model="name"
               type="text"
-              placeholder="Nama kamu"
+              placeholder="Fadhlan Ghifary"
               class="w-full px-4 py-3 rounded-xl font-body text-sm text-charcoal focus:outline-none focus:ring-2 focus:ring-forest transition-all"
               style="border: 1.5px solid rgba(139,94,60,0.2); background: #fafaf9;"
             />
@@ -81,7 +85,7 @@ function handleRegister() {
             <input
               v-model="email"
               type="email"
-              placeholder="kamu@email.com"
+              placeholder="fadhlanghifary@email.com"
               class="w-full px-4 py-3 rounded-xl font-body text-sm text-charcoal focus:outline-none focus:ring-2 focus:ring-forest transition-all"
               style="border: 1.5px solid rgba(139,94,60,0.2); background: #fafaf9;"
             />
@@ -94,7 +98,7 @@ function handleRegister() {
               <input
                 v-model="password"
                 :type="showPassword ? 'text' : 'password'"
-                placeholder="Min. 8 karakter"
+                placeholder="12345678"
                 class="w-full px-4 py-3 pr-11 rounded-xl font-body text-sm text-charcoal focus:outline-none focus:ring-2 focus:ring-forest transition-all"
                 style="border: 1.5px solid rgba(139,94,60,0.2); background: #fafaf9;"
               />
@@ -128,7 +132,6 @@ function handleRegister() {
             @click="handleRegister"
             :disabled="loading"
             class="w-full py-3.5 rounded-xl font-body font-semibold text-sm text-cream bg-forest hover:bg-forest-light transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
-            style="box-shadow: 0 4px 14px rgba(45,80,22,0.25);"
           >
             <svg v-if="loading" class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
@@ -138,45 +141,27 @@ function handleRegister() {
           </button>
         </div>
 
-        <p class="font-body text-xs text-center text-earth-40 mt-4 leading-relaxed">
+        <p class="font-body text-xs text-center text-earth-40 mt-4 tracking-tight leading-relaxed">
           Dengan mendaftar, kamu menyetujui
           <span class="text-forest underline cursor-pointer">Syarat Penggunaan</span> &amp;
           <span class="text-forest underline cursor-pointer">Kebijakan Privasi</span> kami.
         </p>
       </div>
 
-      <!-- ───── RIGHT 50%: Hero panel ───── -->
+      <!-- Right -->
       <div class="w-1/2 relative bg-forest overflow-hidden flex flex-col justify-between p-12">
         <div class="absolute inset-0 pointer-events-none">
-          <div class="absolute inset-0" style="background: radial-gradient(ellipse at 70% 20%, rgba(212,160,23,0.2) 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, rgba(74,124,89,0.4) 0%, transparent 50%);"></div>
-          <div class="absolute inset-0 opacity-5" style="background-image: linear-gradient(rgba(250,246,238,1) 1px, transparent 1px), linear-gradient(90deg, rgba(250,246,238,1) 1px, transparent 1px); background-size: 40px 40px;"></div>
-          <div class="absolute -top-20 -left-20 w-80 h-80 rounded-full" style="background: rgba(212,160,23,0.1);"></div>
-          <div class="absolute -bottom-16 -right-16 w-64 h-64 rounded-full" style="background: rgba(74,124,89,0.2);"></div>
+          <div class="absolute inset-0"></div>
+          <div class="absolute inset-0 opacity-5"></div>
+          <div class="absolute -top-20 -left-20 w-80 h-80 rounded-full"></div>
+          <div class="absolute -bottom-16 -right-16 w-64 h-64 rounded-full"></div>
         </div>
-
-        <!-- Top: benefit cards -->
-        <div class="relative z-10">
-          <div class="grid grid-cols-2 gap-3">
-            <div v-for="b in [
-              { icon: '🚚', title: 'Antar Hari Ini', desc: 'Order sebelum jam 10 pagi' },
-              { icon: '🌿', title: '100% Organik', desc: 'Tanpa pestisida kimia' },
-              { icon: '🤝', title: 'Dari Petani', desc: 'Langsung ke tanganmu' },
-              { icon: '♻️', title: 'Zero Waste', desc: 'Kemasan ramah lingkungan' },
-            ]" :key="b.title" class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20">
-              <span class="text-2xl block mb-2">{{ b.icon }}</span>
-              <p class="font-body font-semibold text-cream text-xs mb-0.5">{{ b.title }}</p>
-              <p class="font-body text-xs" style="color:rgba(250,246,238,0.6)">{{ b.desc }}</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bottom: CTA text -->
         <div class="relative z-10">
           <h2 class="font-display text-3xl font-bold text-cream mb-3 leading-tight">
             Bergabung &amp; Dapatkan<br>
             <span style="color: #a3be8c;">Akses Penuh</span>
           </h2>
-          <p class="font-body text-sm leading-relaxed mb-5" style="color: rgba(250,246,238,0.65);">
+          <p class="font-body text-sm leading-relaxed mb-5">
             Daftar gratis dan nikmati pengalaman belanja sayuran segar yang lebih mudah dan menyenangkan.
           </p>
           <ul class="space-y-2">
@@ -186,12 +171,11 @@ function handleRegister() {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
                 </svg>
               </div>
-              <span class="font-body text-sm" style="color: rgba(250,246,238,0.75);">{{ feat }}</span>
+              <span class="font-body text-sm">{{ feat }}</span>
             </li>
           </ul>
         </div>
       </div>
-
     </div>
   </div>
 </template>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import ArrowLeft from '~/components/svg/ArrowLeft.vue'
-import Close from '~/components/svg/Close.vue'
+import { ref, nextTick, onMounted } from 'vue'
+import ArrowLeft from '../components/svg/ArrowLeft.vue'
+import Close from '../components/svg/Close.vue'
 
 useSeoMeta({ title: 'Support Chat — Cungpruy', robots: 'noindex' })
 

@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { useCartStore } from '~/stores/cart'
+import { ref, computed } from 'vue'
+import { useCartStore } from '../stores/cart'
+import { useProducts } from '../composables/useProducts'
+
 const cart = useCartStore()
 const { products, categories } = useProducts()
 

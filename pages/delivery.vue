@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import Recycle from '~/components/svg/Recycle.vue';
-import TruckDelivery from '~/components/svg/TruckDelivery.vue';
-import ShoppingCart from '~/components/svg/ShoppingCart.vue';
-import HomeBolt from '~/components/svg/HomeBolt.vue';
-import Package from '~/components/svg/Package.vue';
-import Schedule from '~/components/svg/Schedule.vue';
+import Recycle from '../components/svg/Recycle.vue';
+import TruckDelivery from '../components/svg/TruckDelivery.vue';
+import HomeBolt from '../components/svg/HomeBolt.vue';
+import Package from '../components/svg/Package.vue';
+import Schedule from '../components/svg/Schedule.vue';
 useSeoMeta({ title: 'Delivery Info — Cungpruy' })
 </script>
 
