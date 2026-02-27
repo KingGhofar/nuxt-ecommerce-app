@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: '404 — Verdura',
+  title: '404 — Cungpruy',
   robots: 'noindex',
 })
 </script>

@@ -218,7 +218,7 @@ function addToCart(product: any) {
               Tender asparagus, sweet peas, and the first strawberries of the year. Seasonal eating at its most delicious.
             </p>
             <NuxtLink to="/shop" class="btn-primary self-start">
-              Shop Seasonal
+              Shop
             </NuxtLink>
           </div>
           <div class="relative h-64 lg:h-auto">

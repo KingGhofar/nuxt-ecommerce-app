@@ -116,7 +116,7 @@ const navLinks = [
             <li>
               <button @click="cart.toggleCart()" class="font-body text-sm hover:text-cream transition-colors text-gray-400">Cart</button>
             </li>
-            <li><NuxtLink to="/chat" class="font-body text-sm hover:text-cream transition-colors text-gray-400">Chat</NuxtLink></li>
+            <li><NuxtLink to="/support" class="font-body text-sm hover:text-cream transition-colors text-gray-400">Chat</NuxtLink></li>
           </ul>
         </div>
 
