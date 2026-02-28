@@ -39,13 +39,11 @@ function addToCart(product: any) {
     <!-- Hero -->
     <section class="relative overflow-hidden bg-forest min-h-[88vh] flex items-center">
       <!-- Background texture -->
-      <div class="absolute inset-0 opacity-10"
-        style="background-image: radial-gradient(circle at 20% 50%, #87A96B 0%, transparent 50%), radial-gradient(circle at 80% 20%, #4A7C59 0%, transparent 40%)">
+      <div class="absolute inset-0 opacity-10 bg-gradient-custom-radial">
       </div>
       <!-- Decorative circles -->
       <div class="absolute -right-32 -top-32 w-96 h-96 rounded-full bg-sage-20"></div>
       <div class="absolute -left-16 -bottom-16 w-72 h-72 rounded-full bg-leaf-20"></div>
-
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <div>
           <div class="inline-flex items-center gap-2 bg-sage-20 text-white px-4 py-2 rounded-full text-sm font-body font-medium mb-6">
@@ -69,7 +67,6 @@ function addToCart(product: any) {
               Kisah Kami <ArrowNarrowRight class="w-6 h-6" />
             </NuxtLink>
           </div>
-
           <!-- Stats -->
           <div class="grid grid-cols-4 gap-4 mt-12 pt-10 border-t border-white/10">
             <div v-for="stat in stats" :key="stat.label" class="text-center">
@@ -78,8 +75,7 @@ function addToCart(product: any) {
             </div>
           </div>
         </div>
-
-        <!-- Hero Image Grid -->
+        <!-- Image Grid -->
         <div class="hidden lg:grid grid-cols-2 gap-4">
           <div class="space-y-4">
             <div class="rounded-2xl overflow-hidden h-48 shadow-xl shadow-black/20">

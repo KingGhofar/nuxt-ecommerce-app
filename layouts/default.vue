@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import Basket from '../components/svg/Basket.vue';
+import ChatQuestion from '~/components/svg/ChatQuestion.vue';
+import User from '../components/svg/User.vue';
+import Menu from '../components/svg/Menu.vue';
 import { useCartStore } from '../stores/cart'
 
 const cart = useCartStore()
@@ -21,11 +24,11 @@ const navLinks = [
     <!-- Navbar -->
     <header class="sticky top-0 z-40 bg-cream shadow-sm border">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
-
+        <!-- Logo -->
         <NuxtLink to="/" class="flex items-center gap-2">
           <span class="font-display text-xl font-bold text-forest">Cungpruy</span>
         </NuxtLink>
-
+        <!-- Desktop Navigation -->
         <nav class="hidden md:flex items-center gap-8">
           <NuxtLink
             v-for="link in navLinks" :key="link.to" :to="link.to"
@@ -33,57 +36,73 @@ const navLinks = [
             active-class="text-aeonik"
           >{{ link.label }}</NuxtLink>
         </nav>
-
+        <!-- Right Side Actions -->
         <div class="flex items-center gap-2">
-          <!-- chat -->
-          <NuxtLink
-            to="/support"
-            class="hidden sm:flex items-center gap-1.5 font-body text-sm font-medium text-earth hover:text-forest transition-colors px-3 py-2 rounded-full hover:bg-sage-10"
-          >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-            </svg>
-            Chat
-          </NuxtLink>
-
-          <!-- Login -->
-          <NuxtLink
-            to="/auth"
-            class="hidden sm:flex items-center gap-1.5 font-body text-sm font-medium text-earth hover:text-forest transition-colors px-3 py-2 rounded-full hover:bg-sage-10"
-          >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-            </svg>
-            Masuk
-          </NuxtLink>
-
-          <!-- Cart -->
+          <!-- Desktop Chat & Login (icon only) -->
+          <div class="hidden md:flex items-center gap-1">
+            <!-- Chat Icon -->
+            <NuxtLink
+              to="/support"
+              class="flex items-center justify-center w-10 h-10 text-earth hover:text-forest transition-colors rounded-full hover:bg-sage-10"
+              title="Chat"
+            >
+              <ChatQuestion class="w-5 h-5" />
+            </NuxtLink>
+            <!-- Login Icon -->
+            <NuxtLink
+              to="/auth"
+              class="flex items-center justify-center w-10 h-10 text-earth hover:text-forest transition-colors rounded-full hover:bg-sage-10"
+              title="Masuk"
+            >
+              <User class="w-5 h-5" />
+            </NuxtLink>
+          </div>
+          <!-- Cart Button (with text only) -->
           <button
             @click="cart.toggleCart()"
             class="relative flex items-center gap-2 bg-forest text-cream px-4 py-2 rounded-full font-body text-sm hover:bg-forest-light transition-colors"
           >
             <span class="hidden sm:inline">Cart</span>
+            <span class="sm:hidden">Cart</span>
             <span
               v-if="cart.totalItems > 0"
               class="absolute -top-1.5 -right-1.5 w-5 h-5 bg-gold text-white text-xs rounded-full flex items-center justify-center font-bold"
             >{{ cart.totalItems }}</span>
           </button>
-
-          <!-- Mobile hamburger -->
-          <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden w-9 h-9 flex items-center justify-center rounded-full text-earth">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path v-if="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-              <path v-else stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-            </svg>
+          <!-- Mobile Chat & Login (icon only - visible on mobile) -->
+          <div class="flex md:hidden items-center gap-1">
+            <!-- Mobile Chat Icon -->
+            <NuxtLink
+              to="/support"
+              class="flex items-center justify-center w-10 h-10 text-earth hover:text-forest transition-colors rounded-full hover:bg-sage-10"
+              title="Chat"
+            >
+              <ChatQuestion class="w-5 h-5" />
+            </NuxtLink>
+            <!-- Mobile Login Icon -->
+            <NuxtLink
+              to="/auth"
+              class="flex items-center justify-center w-10 h-10 text-earth hover:text-forest transition-colors rounded-full hover:bg-sage-10"
+              title="Masuk"
+            >
+              <User class="w-5 h-5" />
+            </NuxtLink>
+          </div>
+          <!-- Mobile menu -->
+          <button 
+            @click="mobileMenuOpen = !mobileMenuOpen" 
+            class="md:hidden w-10 h-10 flex items-center justify-center rounded-full text-earth hover:bg-sage-10"
+            title="Menu"
+          >
+            <Menu class="w-5 h-5" />
           </button>
         </div>
       </div>
-
-      <!-- Mobile nav -->
-      <div v-if="mobileMenuOpen" class="md:hidden bg-cream px-4 py-3 flex flex-col gap-3" style="border-top: 1px solid rgba(139,94,60,0.1);">
+      <!-- Mobile nav menu -->
+      <div v-if="mobileMenuOpen" class="md:hidden bg-cream px-4 py-3 flex flex-col gap-3 border-t border-sage-20">
         <NuxtLink
           v-for="link in navLinks" :key="link.to" :to="link.to"
-          class="font-body font-medium text-earth py-1"
+          class="font-body font-medium text-earth py-2 hover:text-forest transition-colors"
           active-class="text-forest"
         >{{ link.label }}</NuxtLink>
       </div>
@@ -92,12 +111,10 @@ const navLinks = [
     <!-- Page content -->
     <main class="flex-1"><slot /></main>
 
-    <!-- Footer -->
+    <!-- Footer bottom -->
     <footer class="bg-charcoal mt-16">
-
       <!-- Main Footer -->
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-
         <!-- Brand -->
         <div class="lg:col-span-1">
           <span class="font-display text-xl font-bold text-cream block mb-3">Cungpruy</span>
@@ -105,7 +122,6 @@ const navLinks = [
             Sayuran segar langsung dari petani lokal.
           </p>
         </div>
-
         <!-- Menu -->
         <div>
           <h5 class="font-body font-semibold text-cream text-sm uppercase tracking-widest mb-4">Menu</h5>
@@ -119,7 +135,6 @@ const navLinks = [
             <li><NuxtLink to="/support" class="font-body text-sm hover:text-cream transition-colors text-gray-400">Chat</NuxtLink></li>
           </ul>
         </div>
-
         <!-- Contact -->
         <div>
           <h5 class="font-body font-semibold text-cream text-sm uppercase tracking-widest mb-4">Kontak</h5>
@@ -138,11 +153,9 @@ const navLinks = [
             </li>
           </ul>
         </div>
-
         <!-- Alamat & Jam Buka -->
         <div>
           <h5 class="font-body font-semibold text-cream text-sm uppercase tracking-widest mb-4">Toko Kami</h5>
-
           <!-- Alamat -->
           <div class="flex items-start gap-2.5 mb-4">
             <svg class="w-4 h-4 mt-0.5 flex-shrink-0" style="color:rgba(250,246,238,0.4)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -153,7 +166,6 @@ const navLinks = [
               Jl. Sayur Mayur No. 12,<br>Purwokerto, Jawa Tengah
             </span>
           </div>
-
           <!-- Jam Buka -->
           <div class="flex items-start gap-2.5">
             <svg class="w-4 h-4 mt-0.5 flex-shrink-0" style="color:rgba(250,246,238,0.4)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -167,7 +179,6 @@ const navLinks = [
           </div>
         </div>
       </div>
-
       <!-- Bottom bar -->
       <div class="border-t" style="border-color:rgba(250,246,238,0.08)">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
@@ -175,7 +186,6 @@ const navLinks = [
           <NuxtLink to="/not-found" class="font-body text-xs transition-colors text-gray-400" >404</NuxtLink>
         </div>
       </div>
-
     </footer>
 
     <!-- Cart Drawer -->
@@ -196,7 +206,6 @@ const navLinks = [
             </svg>
           </button>
         </div>
-
         <!-- Items -->
         <div class="flex-1 overflow-y-auto px-5 py-4 space-y-3">
           <!-- Empty -->
@@ -207,7 +216,6 @@ const navLinks = [
               Browse Shop
             </button>
           </div>
-
           <!-- Item row -->
           <div
             v-for="item in cart.items" :key="item.id"
@@ -227,7 +235,6 @@ const navLinks = [
             </div>
           </div>
         </div>
-
         <!-- Footer cart -->
         <div v-if="cart.items.length > 0" class="px-5 py-4 space-y-3" style="border-top: 1px solid rgba(139,94,60,0.1);">
           <div class="flex justify-between font-body text-sm text-earth">

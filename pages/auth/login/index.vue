@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import ArrowLeft from '~/components/svg/ArrowLeft.vue'
+import Facebook from '~/components/svg/Facebook.vue'
+import Google from '~/components/svg/Google.vue'
 
 definePageMeta({ layout: 'auth' })
 useSeoMeta({ title: 'Login — Cungpruy', robots: 'noindex' })
@@ -30,109 +32,105 @@ function handleLogin() {
 </script>
 
 <template>
-  <div class="h-screen overflow-hidden flex items-center justify-center bg-gray-50 p-10">
-    <div class="w-full max-w-[1130px] h-[714px] rounded-[32px] overflow-hidden shadow-2xl flex">
-      <!-- left -->
-      <div class="w-1/2 bg-white flex flex-col justify-center px-14 overflow-hidden">
-
-        <!-- Back -->
+  <div class="min-h-screen flex items-center justify-center bg-gray-50 p-4 sm:p-6 md:p-10">
+    <div class="w-full max-w-[1130px] md:h-[714px] rounded-[32px] overflow-hidden shadow-2xl flex flex-col md:flex-row">
+      <!-- left side -->
+      <div class="w-full md:w-1/2 bg-white flex flex-col justify-start px-6 sm:px-10 md:px-14 py-8 md:py-0 overflow-y-auto relative">
+        <!-- Back button -->
         <button
-          class="absolute top-4 left-4 text-sm font-semibold flex items-center gap-1 cursor-pointer"
+          class="absolute top-6 left-6 md:top-10 md:left-10 text-sm font-semibold flex items-center gap-1 cursor-pointer text-earth hover:text-forest transition-colors z-10"
           @click="step === 1 ? router.back() : step--"
         >
-          <ArrowLeft />
+          <ArrowLeft class="w-4 h-4" />
           <span>Back</span> 
         </button>
-        <h1 class="font-display text-3xl font-bold text-charcoal mb-6">Login</h1>
 
-        <!-- Error -->
-        <div v-if="error" class="mb-4 px-4 py-3 bg-red-50 border border-red-200 rounded-xl font-body text-sm text-red-600">
-          {{ error }}
-        </div>
-
-        <!-- Form -->
-        <div class="space-y-4">
-          <div>
-            <label class="font-body text-xs font-medium text-charcoal uppercase tracking-wider block mb-1.5">Email</label>
-            <input
-              v-model="email"
-              type="email"
-              placeholder="fadhlanghifary@email.com"
-              @keyup.enter="handleLogin"
-              class="w-full px-4 py-3 rounded-xl font-body text-sm text-charcoal focus:outline-none focus:ring-2 focus:ring-forest transition-all"
-              style="border: 1.5px solid rgba(139,94,60,0.2); background: #fafaf9;"
-            />
+        <!-- Content with top padding to account for back button -->
+        <div class="mt-16 md:mt-24 lg:mt-28">
+          <h1 class="font-display text-2xl sm:text-3xl font-bold text-charcoal mb-8">Login</h1>
+          
+          <!-- Error -->
+          <div v-if="error" class="mb-6 px-4 py-3 bg-red-50 border border-red-200 rounded-xl font-body text-sm text-red-600">
+            {{ error }}
           </div>
-
-          <div>
-            <label class="font-body text-xs font-medium text-charcoal uppercase tracking-wider block mb-1.5">Password</label>
-            <div class="relative">
+          
+          <!-- Form -->
+          <div class="space-y-5">
+            <div>
+              <label class="font-body text-xs font-medium text-charcoal uppercase tracking-wider block mb-2">Email</label>
               <input
-                v-model="password"
-                :type="showPassword ? 'text' : 'password'"
-                placeholder="••••••••"
+                v-model="email"
+                type="email"
+                placeholder="fadhlanghifary@email.com"
                 @keyup.enter="handleLogin"
-                class="w-full px-4 py-3 pr-11 rounded-xl font-body text-sm text-charcoal focus:outline-none focus:ring-2 focus:ring-forest transition-all"
+                class="w-full px-4 py-3.5 rounded-xl font-body text-sm text-charcoal focus:outline-none focus:ring-2 focus:ring-forest transition-all"
                 style="border: 1.5px solid rgba(139,94,60,0.2); background: #fafaf9;"
               />
-              <button type="button" @click="showPassword = !showPassword" class="absolute right-3 top-1/2 -translate-y-1/2 text-earth-40 hover:text-earth transition-colors">
-                <svg v-if="!showPassword" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                </svg>
-                <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/>
-                </svg>
-              </button>
             </div>
-            <div class="flex justify-end mt-1.5">
-              <span class="font-body text-xs text-forest underline cursor-pointer">Lupa password?</span>
+            
+            <div>
+              <label class="font-body text-xs font-medium text-charcoal uppercase tracking-wider block mb-2">Password</label>
+              <div class="relative">
+                <input
+                  v-model="password"
+                  :type="showPassword ? 'text' : 'password'"
+                  placeholder="••••••••"
+                  @keyup.enter="handleLogin"
+                  class="w-full px-4 py-3.5 pr-11 rounded-xl font-body text-sm text-charcoal focus:outline-none focus:ring-2 focus:ring-forest transition-all"
+                  style="border: 1.5px solid rgba(139,94,60,0.2); background: #fafaf9;"
+                />
+                <button type="button" @click="showPassword = !showPassword" class="absolute right-3 top-1/2 -translate-y-1/2 text-earth-40 hover:text-earth transition-colors">
+                  <svg v-if="!showPassword" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                  </svg>
+                  <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="flex justify-end mt-2">
+                <span class="font-body text-xs text-forest underline cursor-pointer">Lupa password?</span>
+              </div>
             </div>
+            
+            <button
+              @click="handleLogin"
+              :disabled="loading"
+              class="w-full py-4 rounded-xl font-body font-semibold text-sm text-cream bg-forest hover:bg-forest-light transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed mt-2"
+              style="box-shadow: 0 4px 14px rgba(45,80,22,0.25);"
+            >
+              <svg v-if="loading" class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+              </svg>
+              {{ loading ? 'Memproses...' : 'Masuk' }}
+            </button>
           </div>
-
-          <button
-            @click="handleLogin"
-            :disabled="loading"
-            class="w-full py-3.5 rounded-xl font-body font-semibold text-sm text-cream bg-forest hover:bg-forest-light transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
-            style="box-shadow: 0 4px 14px rgba(45,80,22,0.25);"
-          >
-            <svg v-if="loading" class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
-              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
-            </svg>
-            {{ loading ? 'Memproses...' : 'Masuk' }}
-          </button>
-        </div>
-
-        <!-- Divider -->
-        <div class="flex items-center gap-3 my-6">
-          <div class="flex-1 h-px" style="background:rgba(139,94,60,0.1)"></div>
-          <span class="font-body text-xs text-earth-40">atau</span>
-          <div class="flex-1 h-px" style="background:rgba(139,94,60,0.1)"></div>
-        </div>
-
-        <!-- Social -->
-        <div class="grid grid-cols-2 gap-3">
-          <button class="flex items-center justify-center gap-2 rounded-xl py-2.5 font-body text-sm text-charcoal hover:bg-gray-50 transition-colors" style="border: 1px solid rgba(139,94,60,0.15);">
-            <svg class="w-4 h-4" viewBox="0 0 24 24">
-              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-            </svg>
-            Google
-          </button>
-          <button class="flex items-center justify-center gap-2 rounded-xl py-2.5 font-body text-sm text-charcoal hover:bg-gray-50 transition-colors" style="border: 1px solid rgba(139,94,60,0.15);">
-            <svg class="w-4 h-4" fill="#1877F2" viewBox="0 0 24 24">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
-            Facebook
-          </button>
+          
+          <!-- Divider -->
+          <div class="flex items-center gap-3 my-8">
+            <div class="flex-1 h-px" style="background:rgba(139,94,60,0.1)"></div>
+            <span class="font-body text-xs text-earth-40">atau</span>
+            <div class="flex-1 h-px" style="background:rgba(139,94,60,0.1)"></div>
+          </div>
+          
+          <!-- Social -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <button class="flex items-center justify-center gap-2 rounded-xl py-3 font-body text-sm text-charcoal hover:bg-gray-50 transition-colors" style="border: 1px solid rgba(139,94,60,0.15);">
+              <Google class="w-4 h-4"/>
+              Google
+            </button>
+            <button class="flex items-center justify-center gap-2 rounded-xl py-3 font-body text-sm text-charcoal hover:bg-gray-50 transition-colors" style="border: 1px solid rgba(139,94,60,0.15);">
+              <Facebook class="w-4 h-4"/>
+              Facebook
+            </button>
+          </div>
         </div>
       </div>
 
-      <!-- Right -->
-      <div class="w-1/2 relative bg-forest overflow-hidden flex flex-col justify-between p-12">
+      <!-- Right side - hidden on mobile, visible on desktop -->
+      <div class="hidden md:block md:w-1/2 relative bg-forest overflow-hidden flex flex-col justify-between p-12">
         <div class="absolute inset-0 pointer-events-none">
           <div class="absolute inset-0"></div>
           <div class="absolute inset-0 opacity-5"></div>
@@ -144,7 +142,7 @@ function handleLogin() {
             Masuk &amp; Nikmati<br>
             <span style="color: #a3be8c;">Pengalaman Berbelanja</span>
           </h2>
-          <p class="font-body text-sm leading-relaxed mb-5">
+          <p class="font-body text-sm leading-relaxed mb-5 text-cream/80">
             Akses riwayat pesanan, lacak pengiriman, dan checkout lebih cepat.
           </p>
           <ul class="space-y-2">
@@ -154,7 +152,7 @@ function handleLogin() {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
                 </svg>
               </div>
-              <span class="font-body text-sm">{{ feat }}</span>
+              <span class="font-body text-sm text-cream/90">{{ feat }}</span>
             </li>
           </ul>
         </div>
@@ -162,3 +160,17 @@ function handleLogin() {
     </div>
   </div>
 </template>
+
+<style scoped>
+/* Optional: styling untuk scroll di mobile */
+@media (max-width: 768px) {
+  .overflow-y-auto {
+    max-height: 100vh;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .shadow-2xl {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+  }
+}
+</style>
