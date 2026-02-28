@@ -3,7 +3,10 @@ import ArrowLeft from '~/components/svg/ArrowLeft.vue'
 import Facebook from '~/components/svg/Facebook.vue'
 import Google from '~/components/svg/Google.vue'
 
-definePageMeta({ layout: 'auth' })
+definePageMeta({ 
+  layout: 'auth',
+})
+
 useSeoMeta({ title: 'Login — Cungpruy', robots: 'noindex' })
 
 const router = useRouter()

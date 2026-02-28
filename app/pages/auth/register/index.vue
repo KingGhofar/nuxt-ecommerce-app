@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import ArrowLeft from '~/components/svg/ArrowLeft.vue'
+
+
 definePageMeta({ layout: 'auth' })
 useSeoMeta({ title: 'Register — Cungpruy', robots: 'noindex' })
 

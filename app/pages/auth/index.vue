@@ -3,6 +3,8 @@ import Facebook from '~/components/svg/Facebook.vue';
 import Google from '~/components/svg/Google.vue';
 
 definePageMeta({ layout: 'auth' })
+
+
 useSeoMeta({ title: 'Masuk — Cungpruy', robots: 'noindex' })
 </script>
 
