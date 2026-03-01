@@ -79,10 +79,10 @@ function addToCart(product: any) {
         <div class="hidden lg:grid grid-cols-2 gap-4">
           <div class="space-y-4">
             <div class="rounded-2xl overflow-hidden h-48 shadow-xl shadow-black/20">
-              <img fetchpriority="high" src="https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?w=360&q=75" alt="Fresh vegetables" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+              <img fetchpriority="high" src="https://i.pinimg.com/736x/9a/f4/47/9af447b0d0f17883c26c1efa7e1e1cb0.jpg" alt="Fresh vegetables" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
             </div>
             <div class="rounded-2xl overflow-hidden h-64 shadow-xl shadow-black/20">
-              <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=360&q=75" alt="Farmer" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+              <img loading="lazy" decoding="async" src="https://i.pinimg.com/736x/1a/6f/56/1a6f560902969e0b92f37fbb97c2f43e.jpg" alt="Farmer" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
             </div>
           </div>
           <div class="space-y-4 mt-8">

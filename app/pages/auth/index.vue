@@ -7,7 +7,6 @@ definePageMeta({
   layout: 'auth',
 })
 const router = useRouter()
-// STEP CONTROL
 const step = ref<number>(1)
 
 useSeoMeta({ title: 'Masuk — Cungpruy', robots: 'noindex' })
@@ -26,7 +25,7 @@ useSeoMeta({ title: 'Masuk — Cungpruy', robots: 'noindex' })
           <ArrowLeft class="w-4 h-4" />
           <span>Back</span> 
         </button>
-        <div class="mt-16 md:mt-24 lg:mt-28 flex flex-col items-center">
+        <div class="mt-32 md:mt-36 lg:mt-40 flex flex-col items-center">
           <!-- Logo -->
           <NuxtLink to="/" class="flex items-center gap-2.5 mb-6">
             <span class="font-display font-bold text-charcoal text-lg sm:text-xl">Cungpruy</span>
@@ -75,12 +74,6 @@ useSeoMeta({ title: 'Masuk — Cungpruy', robots: 'noindex' })
       </div>
       <!-- Right side -->
       <div class="hidden md:block md:w-1/2 relative bg-forest overflow-hidden flex flex-col justify-between p-12">
-        <div class="absolute inset-0 pointer-events-none">
-          <div class="absolute inset-0 bg-gradient-to-br from-forest-light to-forest-dark opacity-20"></div>
-          <div class="absolute inset-0 opacity-5"></div>
-          <div class="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-cream/10"></div>
-          <div class="absolute -bottom-16 -left-16 w-64 h-64 rounded-full bg-cream/10"></div>
-        </div>
         <!-- Content -->
         <div class="relative z-10">
           <h2 class="font-display text-3xl font-bold text-cream mb-3 leading-tight">
@@ -107,7 +100,6 @@ useSeoMeta({ title: 'Masuk — Cungpruy', robots: 'noindex' })
 </template>
 
 <style scoped>
-/* Styling scroll mobile */
 @media (max-width: 768px) {
   .overflow-y-auto {
     max-height: 100vh;
@@ -119,7 +111,6 @@ useSeoMeta({ title: 'Masuk — Cungpruy', robots: 'noindex' })
   }
 }
 
-/* Desktop specific */
 @media (min-width: 768px) {
   .md\:h-\[714px\] {
     height: 714px;
