@@ -136,12 +136,18 @@ onMounted(scrollToBottom)
 <template>
   <div class="min-h-screen bg-gray-50 py-8 px-4">
     <div class="max-w-2xl mx-auto">
+
+      <!-- Chat Closed -->
       <div v-if="!chatOpen" class="rounded-2xl p-12 text-center">
         <h2 class="font-display text-2xl font-bold text-charcoal mb-2">Chat Ditutup</h2>
         <p class="font-body text-earth mb-6">Terima kasih telah menghubungi Admin.</p>
         <NuxtLink to="/" class="btn-primary">Kembali ke Beranda</NuxtLink>
       </div>
+
+      <!-- Chat Open -->
       <div v-else class="space-y-4">
+
+        <!-- Header -->
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
             <NuxtLink to="/" class="flex items-center gap-2 text-black transition-colors">
@@ -157,6 +163,8 @@ onMounted(scrollToBottom)
             Close
           </button>
         </div>
+
+        <!-- Chat Details Collapsible -->
         <div v-if="detailsOpen" class="px-6 pb-5 border-t border-earth-10">
         <div class="grid grid-cols-2 gap-4 pt-4">
             <div>
@@ -176,7 +184,12 @@ onMounted(scrollToBottom)
             </div>
         </div>
         </div>
+        
+
+        <!-- Chat Box -->
         <div class="bg-white rounded-xl border border-earth-10 shadow-sm overflow-hidden">
+
+          <!-- Chat Header -->
           <div class="flex items-center gap-3 px-5 py-3.5 border-b border-earth-10">
             <div class="w-8 h-8 rounded-full bg-forest flex items-center justify-center flex-shrink-0">
               <span class="text-cream text-xs font-bold font-body">CP</span>
@@ -189,6 +202,8 @@ onMounted(scrollToBottom)
               </div>
             </div>
           </div>
+
+          <!-- Welcome Banner -->
           <div v-if="showBanner" class="mx-4 mt-4 bg-amber-50 border border-amber-100 rounded-xl px-4 py-3 flex items-start justify-between gap-3">
             <div>
               <p class="font-body font-semibold text-amber-800 text-sm">Kami siap membantu kamu!</p>
@@ -202,7 +217,9 @@ onMounted(scrollToBottom)
               <Close class="w-4 h-4" />
             </button>
           </div>
-          <div class="px-4 pt-2 flex flex-wrap gap-2">
+
+          <!-- Quick Replies -->
+          <div class="px-4 pt-3 flex flex-wrap gap-2">
             <button
               v-for="qr in quickReplies"
               :key="qr.label"
@@ -212,6 +229,8 @@ onMounted(scrollToBottom)
               {{ qr.label }}
             </button>
           </div>
+
+          <!-- Messages Area -->
           <div
             ref="chatEl"
             class="px-4 py-4 space-y-4 overflow-y-auto"
@@ -240,6 +259,8 @@ onMounted(scrollToBottom)
                 </p>
               </div>
             </div>
+
+            <!-- Typing indicator -->
             <div v-if="isTyping" class="flex justify-start">
               <div class="bg-gray-100 rounded-2xl rounded-tl-sm px-4 py-3 flex gap-1 items-center">
                 <span class="w-1.5 h-1.5 bg-earth-40 rounded-full animate-bounce" style="animation-delay:0ms"></span>
@@ -248,6 +269,8 @@ onMounted(scrollToBottom)
               </div>
             </div>
           </div>
+
+          <!-- Input -->
           <div class="px-4 py-3 flex items-end gap-3 border-t border-earth-10">
             <textarea
               v-model="inputText"

@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  compatibilityDate: '2026-02-03',
+  compatibilityDate: '2024-11-01',
 
   // Disable devtools in production
   devtools: { enabled: process.env.NODE_ENV === 'development' },
@@ -14,6 +14,22 @@ export default defineNuxtConfig({
     configPath: 'tailwind.config.ts',
   },
 
+  // Vite optimizations
+  vite: {
+    build: {
+      chunkSizeWarningLimit: 300,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'pinia': ['pinia'],
+          },
+        },
+      },
+    },
+    css: {
+      devSourcemap: false,
+    },
+  },
 
   // Nitro compression
   nitro: {

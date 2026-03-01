@@ -1,5 +1,5 @@
 {
-  "name": "cungpruy-store",
+  "name": "veggie-store",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,11 +10,11 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@pinia/nuxt": "^0.5.1",
-    "nuxt": "^4.3.1",
-    "pinia": "^2.1.7",
+    "nuxt": "^3.13.0",
     "vue": "^3.5.0",
-    "vue-router": "^4.4.0"
+    "vue-router": "^4.4.0",
+    "@pinia/nuxt": "^0.5.1",
+    "pinia": "^2.1.7"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.12.0",
