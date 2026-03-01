@@ -47,16 +47,13 @@ function handleLogin() {
           <ArrowLeft class="w-4 h-4" />
           <span>Back</span> 
         </button>
-
-        <!-- Content with top padding to account for back button -->
+        <!-- login -->
         <div class="mt-16 md:mt-24 lg:mt-28">
           <h1 class="font-display text-2xl sm:text-3xl font-bold text-charcoal mb-8">Login</h1>
-          
           <!-- Error -->
           <div v-if="error" class="mb-6 px-4 py-3 bg-red-50 border border-red-200 rounded-xl font-body text-sm text-red-600">
             {{ error }}
           </div>
-          
           <!-- Form -->
           <div class="space-y-5">
             <div>
@@ -70,7 +67,6 @@ function handleLogin() {
                 style="border: 1.5px solid rgba(139,94,60,0.2); background: #fafaf9;"
               />
             </div>
-            
             <div>
               <label class="font-body text-xs font-medium text-charcoal uppercase tracking-wider block mb-2">Password</label>
               <div class="relative">
@@ -96,7 +92,6 @@ function handleLogin() {
                 <span class="font-body text-xs text-forest underline cursor-pointer">Lupa password?</span>
               </div>
             </div>
-            
             <button
               @click="handleLogin"
               :disabled="loading"
@@ -132,7 +127,7 @@ function handleLogin() {
         </div>
       </div>
 
-      <!-- Right side - hidden on mobile, visible on desktop -->
+      <!-- Right side -->
       <div class="hidden md:block md:w-1/2 relative bg-forest overflow-hidden flex flex-col justify-between p-12">
         <div class="absolute inset-0 pointer-events-none">
           <div class="absolute inset-0"></div>

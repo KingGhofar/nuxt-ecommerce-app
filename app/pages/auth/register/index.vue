@@ -2,7 +2,9 @@
 import ArrowLeft from '~/components/svg/ArrowLeft.vue'
 
 
-definePageMeta({ layout: 'auth' })
+definePageMeta({ 
+  layout: 'auth',
+})
 useSeoMeta({ title: 'Register — Cungpruy', robots: 'noindex' })
 
 const router = useRouter()
