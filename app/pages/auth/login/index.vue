@@ -1,33 +1,29 @@
 <script setup lang="ts">
 import ArrowLeft from '~/components/svg/ArrowLeft.vue'
-definePageMeta({ layout: 'auth' })
-useSeoMeta({ title: 'Register — Cungpruy', robots: 'noindex' })
+import Facebook from '~/components/svg/Facebook.vue'
+import Google from '~/components/svg/Google.vue'
+
+definePageMeta({ 
+  layout: 'auth',
+})
+
+useSeoMeta({ title: 'Login — Cungpruy', robots: 'noindex' })
 
 const router = useRouter()
 
 // STEP CONTROL
 const step = ref<number>(1)
 
-const name = ref('')
 const email = ref('')
 const password = ref('')
-const confirmPassword = ref('')
 const showPassword = ref(false)
 const loading = ref(false)
 const error = ref('')
 
-function handleRegister() {
+function handleLogin() {
   error.value = ''
-  if (!name.value || !email.value || !password.value || !confirmPassword.value) {
-    error.value = 'Semua field wajib diisi.'
-    return
-  }
-  if (password.value !== confirmPassword.value) {
-    error.value = 'Password dan konfirmasi password tidak cocok.'
-    return
-  }
-  if (password.value.length < 8) {
-    error.value = 'Password minimal 8 karakter.'
+  if (!email.value || !password.value) {
+    error.value = 'Email dan password wajib diisi.'
     return
   }
   loading.value = true
@@ -41,9 +37,9 @@ function handleRegister() {
 <template>
   <div class="min-h-screen flex items-center justify-center bg-gray-50 p-4 sm:p-6 md:p-10">
     <div class="w-full max-w-[1130px] md:h-[714px] rounded-[32px] overflow-hidden shadow-2xl flex flex-col md:flex-row">
-      <!-- Left side -->
+      <!-- left side -->
       <div class="w-full md:w-1/2 bg-white flex flex-col justify-start px-6 sm:px-10 md:px-14 py-8 md:py-0 overflow-y-auto relative">
-        <!-- Back -->
+        <!-- Back button -->
         <button
           class="absolute top-6 left-6 md:top-10 md:left-10 text-sm font-semibold flex items-center gap-1 cursor-pointer text-earth hover:text-forest transition-colors z-10"
           @click="step === 1 ? router.back() : step--"
@@ -51,43 +47,34 @@ function handleRegister() {
           <ArrowLeft class="w-4 h-4" />
           <span>Back</span> 
         </button>
+        <!-- login -->
         <div class="mt-16 md:mt-24 lg:mt-28">
-          <h1 class="font-display text-2xl sm:text-3xl font-bold text-charcoal mb-8">Register</h1>
+          <h1 class="font-display text-2xl sm:text-3xl font-bold text-charcoal mb-8">Login</h1>
+          <!-- Error -->
           <div v-if="error" class="mb-6 px-4 py-3 bg-red-50 border border-red-200 rounded-xl font-body text-sm text-red-600">
             {{ error }}
           </div>
           <!-- Form -->
           <div class="space-y-5">
-            <!-- Name -->
-            <div>
-              <label class="font-body text-xs font-medium text-charcoal uppercase tracking-wider block mb-2">Nama Lengkap</label>
-              <input
-                v-model="name"
-                type="text"
-                placeholder="Fadhlan Ghifary"
-                class="w-full px-4 py-3.5 rounded-xl font-body text-sm text-charcoal focus:outline-none focus:ring-2 focus:ring-forest transition-all"
-                style="border: 1.5px solid rgba(139,94,60,0.2); background: #fafaf9;"
-              />
-            </div>
-            <!-- Email -->
             <div>
               <label class="font-body text-xs font-medium text-charcoal uppercase tracking-wider block mb-2">Email</label>
               <input
                 v-model="email"
                 type="email"
                 placeholder="fadhlanghifary@email.com"
+                @keyup.enter="handleLogin"
                 class="w-full px-4 py-3.5 rounded-xl font-body text-sm text-charcoal focus:outline-none focus:ring-2 focus:ring-forest transition-all"
                 style="border: 1.5px solid rgba(139,94,60,0.2); background: #fafaf9;"
               />
             </div>
-            <!-- Password -->
             <div>
               <label class="font-body text-xs font-medium text-charcoal uppercase tracking-wider block mb-2">Password</label>
               <div class="relative">
                 <input
                   v-model="password"
                   :type="showPassword ? 'text' : 'password'"
-                  placeholder="12345678"
+                  placeholder="••••••••"
+                  @keyup.enter="handleLogin"
                   class="w-full px-4 py-3.5 pr-11 rounded-xl font-body text-sm text-charcoal focus:outline-none focus:ring-2 focus:ring-forest transition-all"
                   style="border: 1.5px solid rgba(139,94,60,0.2); background: #fafaf9;"
                 />
@@ -101,22 +88,12 @@ function handleRegister() {
                   </svg>
                 </button>
               </div>
+              <div class="flex justify-end mt-2">
+                <span class="font-body text-xs text-forest underline cursor-pointer">Lupa password?</span>
+              </div>
             </div>
-            <!-- Confirm Password -->
-            <div>
-              <label class="font-body text-xs font-medium text-charcoal uppercase tracking-wider block mb-2">Konfirmasi Password</label>
-              <input
-                v-model="confirmPassword"
-                :type="showPassword ? 'text' : 'password'"
-                placeholder="Ulangi password"
-                @keyup.enter="handleRegister"
-                class="w-full px-4 py-3.5 rounded-xl font-body text-sm text-charcoal focus:outline-none focus:ring-2 focus:ring-forest transition-all"
-                style="border: 1.5px solid rgba(139,94,60,0.2); background: #fafaf9;"
-              />
-            </div>
-            <!-- Submit -->
             <button
-              @click="handleRegister"
+              @click="handleLogin"
               :disabled="loading"
               class="w-full py-4 rounded-xl font-body font-semibold text-sm text-cream bg-forest hover:bg-forest-light transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed mt-2"
               style="box-shadow: 0 4px 14px rgba(45,80,22,0.25);"
@@ -125,35 +102,49 @@ function handleRegister() {
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
               </svg>
-              {{ loading ? 'Mendaftar...' : 'Buat Akun' }}
+              {{ loading ? 'Memproses...' : 'Masuk' }}
             </button>
           </div>
-          <p class="font-body text-xs text-center text-earth-40 mt-8 tracking-tight leading-relaxed">
-            Dengan mendaftar, kamu menyetujui
-            <span class="text-forest underline cursor-pointer">Syarat Penggunaan</span> &amp;
-            <span class="text-forest underline cursor-pointer">Kebijakan Privasi</span> kami.
-          </p>
+          
+          <!-- Divider -->
+          <div class="flex items-center gap-3 my-8">
+            <div class="flex-1 h-px" style="background:rgba(139,94,60,0.1)"></div>
+            <span class="font-body text-xs text-earth-40">atau</span>
+            <div class="flex-1 h-px" style="background:rgba(139,94,60,0.1)"></div>
+          </div>
+          
+          <!-- Social -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <button class="flex items-center justify-center gap-2 rounded-xl py-3 font-body text-sm text-charcoal hover:bg-gray-50 transition-colors" style="border: 1px solid rgba(139,94,60,0.15);">
+              <Google class="w-4 h-4"/>
+              Google
+            </button>
+            <button class="flex items-center justify-center gap-2 rounded-xl py-3 font-body text-sm text-charcoal hover:bg-gray-50 transition-colors" style="border: 1px solid rgba(139,94,60,0.15);">
+              <Facebook class="w-4 h-4"/>
+              Facebook
+            </button>
+          </div>
         </div>
       </div>
 
-      <!-- Right side sementara -->
+      <!-- Right side -->
       <div class="hidden md:block md:w-1/2 relative bg-forest overflow-hidden flex flex-col justify-between p-12">
         <div class="absolute inset-0 pointer-events-none">
           <div class="absolute inset-0"></div>
           <div class="absolute inset-0 opacity-5"></div>
-          <div class="absolute -top-20 -left-20 w-80 h-80 rounded-full"></div>
-          <div class="absolute -bottom-16 -right-16 w-64 h-64 rounded-full"></div>
+          <div class="absolute -top-20 -right-20 w-80 h-80 rounded-full"></div>
+          <div class="absolute -bottom-16 -left-16 w-64 h-64 rounded-full"></div>
         </div>
         <div class="relative z-10">
           <h2 class="font-display text-3xl font-bold text-cream mb-3 leading-tight">
-            Bergabung &amp; Dapatkan<br>
-            <span style="color: #a3be8c;">Akses Penuh</span>
+            Masuk &amp; Nikmati<br>
+            <span style="color: #a3be8c;">Pengalaman Berbelanja</span>
           </h2>
           <p class="font-body text-sm leading-relaxed mb-5 text-cream/80">
-            Daftar gratis dan nikmati pengalaman belanja sayuran segar yang lebih mudah dan menyenangkan.
+            Akses riwayat pesanan, lacak pengiriman, dan checkout lebih cepat.
           </p>
           <ul class="space-y-2">
-            <li v-for="feat in ['Lacak pesanan secara real-time', 'Riwayat belanja tersimpan', 'Notifikasi stok produk favorit', 'Checkout lebih cepat']" :key="feat" class="flex items-center gap-2.5">
+            <li v-for="feat in ['Lacak pesanan secara real-time', 'Riwayat belanja tersimpan', 'Notifikasi stok favorit', 'Checkout lebih cepat']" :key="feat" class="flex items-center gap-2.5">
               <div class="w-4 h-4 rounded-full bg-sage-20 flex items-center justify-center flex-shrink-0">
                 <svg class="w-2.5 h-2.5 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>

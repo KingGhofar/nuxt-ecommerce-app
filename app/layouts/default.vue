@@ -16,11 +16,14 @@ const navLinks = [
   { label: 'About', to: '/about' },
   { label: 'Delivery', to: '/delivery' },
 ]
+
+const openChat = () => {
+  navigateTo('/support')
+}
 </script>
 
 <template>
   <div class="min-h-screen flex flex-col">
-
     <!-- Navbar -->
     <header class="sticky top-0 z-40 bg-cream shadow-sm border">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
@@ -28,7 +31,6 @@ const navLinks = [
         <NuxtLink to="/" class="flex items-center gap-2">
           <span class="font-display text-xl font-bold text-forest">Cungpruy</span>
         </NuxtLink>
-        <!-- Desktop Navigation -->
         <nav class="hidden md:flex items-center gap-8">
           <NuxtLink
             v-for="link in navLinks" :key="link.to" :to="link.to"
@@ -36,19 +38,9 @@ const navLinks = [
             active-class="text-aeonik"
           >{{ link.label }}</NuxtLink>
         </nav>
-        <!-- Right Side Actions -->
         <div class="flex items-center gap-2">
-          <!-- Desktop Chat & Login (icon only) -->
           <div class="hidden md:flex items-center gap-1">
-            <!-- Chat Icon -->
-            <NuxtLink
-              to="/support"
-              class="flex items-center justify-center w-10 h-10 text-earth hover:text-forest transition-colors rounded-full hover:bg-sage-10"
-              title="Chat"
-            >
-              <ChatQuestion class="w-5 h-5" />
-            </NuxtLink>
-            <!-- Login Icon -->
+            <!-- Login -->
             <NuxtLink
               to="/auth"
               class="flex items-center justify-center w-10 h-10 text-earth hover:text-forest transition-colors rounded-full hover:bg-sage-10"
@@ -57,7 +49,7 @@ const navLinks = [
               <User class="w-5 h-5" />
             </NuxtLink>
           </div>
-          <!-- Cart Button (with text only) -->
+          <!-- Cart Button -->
           <button
             @click="cart.toggleCart()"
             class="relative flex items-center gap-2 bg-forest text-cream px-4 py-2 rounded-full font-body text-sm hover:bg-forest-light transition-colors"
@@ -69,17 +61,8 @@ const navLinks = [
               class="absolute -top-1.5 -right-1.5 w-5 h-5 bg-gold text-white text-xs rounded-full flex items-center justify-center font-bold"
             >{{ cart.totalItems }}</span>
           </button>
-          <!-- Mobile Chat & Login (icon only - visible on mobile) -->
+          <!-- Mobile Login -->
           <div class="flex md:hidden items-center gap-1">
-            <!-- Mobile Chat Icon -->
-            <NuxtLink
-              to="/support"
-              class="flex items-center justify-center w-10 h-10 text-earth hover:text-forest transition-colors rounded-full hover:bg-sage-10"
-              title="Chat"
-            >
-              <ChatQuestion class="w-5 h-5" />
-            </NuxtLink>
-            <!-- Mobile Login Icon -->
             <NuxtLink
               to="/auth"
               class="flex items-center justify-center w-10 h-10 text-earth hover:text-forest transition-colors rounded-full hover:bg-sage-10"
@@ -88,7 +71,6 @@ const navLinks = [
               <User class="w-5 h-5" />
             </NuxtLink>
           </div>
-          <!-- Mobile menu -->
           <button 
             @click="mobileMenuOpen = !mobileMenuOpen" 
             class="md:hidden w-10 h-10 flex items-center justify-center rounded-full text-earth hover:bg-sage-10"
@@ -98,7 +80,6 @@ const navLinks = [
           </button>
         </div>
       </div>
-      <!-- Mobile nav menu -->
       <div v-if="mobileMenuOpen" class="md:hidden bg-cream px-4 py-3 flex flex-col gap-3 border-t border-sage-20">
         <NuxtLink
           v-for="link in navLinks" :key="link.to" :to="link.to"
@@ -108,12 +89,22 @@ const navLinks = [
       </div>
     </header>
 
-    <!-- Page content -->
+    <!-- Page -->
     <main class="flex-1"><slot /></main>
+
+    <!-- Floating Chat -->
+    <button
+      @click="openChat"
+      class="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-blue-500 text-cream rounded-full shadow-lg hover:bg-blue-600 transition-all duration-300 hover:scale-110 group"
+      title="Chat dengan kami"
+      aria-label="Chat dengan kami"
+    >
+      <ChatQuestion class="w-6 h-6" />
+    </button>
 
     <!-- Footer bottom -->
     <footer class="bg-charcoal mt-16">
-      <!-- Main Footer -->
+      <!-- Main -->
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
         <!-- Brand -->
         <div class="lg:col-span-1">
@@ -132,6 +123,7 @@ const navLinks = [
             <li>
               <button @click="cart.toggleCart()" class="font-body text-sm hover:text-cream transition-colors text-gray-400">Cart</button>
             </li>
+            <!-- Chat -->
             <li><NuxtLink to="/support" class="font-body text-sm hover:text-cream transition-colors text-gray-400">Chat</NuxtLink></li>
           </ul>
         </div>
@@ -156,7 +148,6 @@ const navLinks = [
         <!-- Alamat & Jam Buka -->
         <div>
           <h5 class="font-body font-semibold text-cream text-sm uppercase tracking-widest mb-4">Toko Kami</h5>
-          <!-- Alamat -->
           <div class="flex items-start gap-2.5 mb-4">
             <svg class="w-4 h-4 mt-0.5 flex-shrink-0" style="color:rgba(250,246,238,0.4)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
@@ -166,7 +157,6 @@ const navLinks = [
               Jl. Sayur Mayur No. 12,<br>Purwokerto, Jawa Tengah
             </span>
           </div>
-          <!-- Jam Buka -->
           <div class="flex items-start gap-2.5">
             <svg class="w-4 h-4 mt-0.5 flex-shrink-0" style="color:rgba(250,246,238,0.4)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -219,8 +209,7 @@ const navLinks = [
           <!-- Item row -->
           <div
             v-for="item in cart.items" :key="item.id"
-            class="flex items-center gap-3 bg-white rounded-xl p-3"
-            style="border: 1px solid rgba(139,94,60,0.08);"
+            class="flex items-center gap-3 bg-white rounded-xl p-3 border"
           >
             <img :src="item.image" :alt="item.name" loading="lazy" class="w-12 h-12 rounded-lg object-cover flex-shrink-0" />
             <div class="flex-1 min-w-0">
@@ -261,3 +250,45 @@ const navLinks = [
     </Teleport>
   </div>
 </template>
+
+<style scoped>
+/* Styling untuk floating chat button */
+.fixed {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 50;
+}
+
+/* Animasi untuk badge notifikasi */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Responsive untuk mobile */
+@media (max-width: 640px) {
+  .fixed {
+    bottom: 1rem;
+    right: 1rem;
+  }
+  
+  .w-14 {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+  
+  .w-6 {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+</style>
