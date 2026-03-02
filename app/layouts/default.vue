@@ -2,6 +2,10 @@
 import { ref, watch } from 'vue'
 import Basket from '../components/svg/Basket.vue';
 import ChatQuestion from '~/components/svg/ChatQuestion.vue';
+import Clock from '~/components/svg/Clock.vue';
+import Map from '~/components/svg/Map.vue';
+import Mail from '~/components/svg/Mail.vue';
+import Phone from '~/components/svg/Phone.vue';
 import User from '../components/svg/User.vue';
 import Menu from '../components/svg/Menu.vue';
 import { useCartStore } from '../stores/cart'
@@ -131,40 +135,31 @@ const openChat = () => {
         <div>
           <h5 class="font-body font-semibold text-cream text-sm uppercase tracking-widest mb-4">Kontak</h5>
           <ul class="space-y-3">
-            <li class="flex items-start gap-2.5">
-              <svg class="w-4 h-4 mt-0.5 flex-shrink-0" style="color:rgba(250,246,238,0.4)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-              </svg>
-              <span class="font-body text-sm text-gray-400">cungpret@gmail.com</span>
+            <li class="flex items-start gap-2.5 text-gray-400">
+              <Mail class="w-4 h-4 mt-0.5 flex-shrink-0"/>
+              <span class="font-body text-sm">cungpret@gmail.com</span>
             </li>
-            <li class="flex items-start gap-2.5">
-              <svg class="w-4 h-4 mt-0.5 flex-shrink-0" style="color:rgba(250,246,238,0.4)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-              </svg>
-              <span class="font-body text-sm text-gray-400">+62 812-3456-7890</span>
+            <li class="flex items-start gap-2.5 text-gray-400">
+              <Phone class="w-4 h-4 mt-0.5 flex-shrink-0"/>
+              <span class="font-body text-sm">+62 812-3456-7890</span>
             </li>
           </ul>
         </div>
         <!-- Alamat & Jam Buka -->
         <div>
           <h5 class="font-body font-semibold text-cream text-sm uppercase tracking-widest mb-4">Toko Kami</h5>
-          <div class="flex items-start gap-2.5 mb-4">
-            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" style="color:rgba(250,246,238,0.4)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-            </svg>
-            <span class="font-body text-sm leading-relaxed text-gray-400">
+          <div class="flex items-start gap-2.5 mb-4 text-gray-400">
+            <Map class="w-4 h-4 mt-0.5 flex-shrink-0"/>
+            <span class="font-body text-sm leading-relaxed">
               Jl. Sayur Mayur No. 12,<br>Purwokerto, Jawa Tengah
             </span>
           </div>
-          <div class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" style="color:rgba(250,246,238,0.4)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
+          <div class="flex items-start gap-2.5 text-gray-400">
+            <Clock class="w-4 h-4 mt-0.5 flex-shrink-0"/>
             <div>
               <p class="font-body text-sm font-medium text-cream mb-1">Jam Buka</p>
-              <p class="font-body text-sm text-gray-400">Senin — Sabtu</p>
-              <p class="font-body text-sm text-gray-400">08.00 — 17.00 WIB</p>
+              <p class="font-body text-sm">Senin — Sabtu</p>
+              <p class="font-body text-sm">08.00 — 17.00 WIB</p>
             </div>
           </div>
         </div>
@@ -180,10 +175,17 @@ const openChat = () => {
 
     <!-- Cart Drawer -->
     <Teleport to="body">
-      <div v-if="cart.isOpen" class="fixed inset-0 z-50 bg-black/40" @click="cart.closeCart()" />
+      <!-- Overlay -->
+      <div 
+        v-if="cart.isOpen" 
+        class="fixed inset-0 w-screen h-screen z-50 bg-black/40" 
+        @click="cart.closeCart()"
+      />
+      <!-- Cart Drawer -->
       <div
         v-if="cart.isOpen"
-        class="fixed right-0 top-0 h-full w-full max-w-sm z-50 bg-cream flex flex-col shadow-2xl"
+        class="fixed top-0 right-0 h-full w-full max-w-sm z-50 bg-cream flex flex-col shadow-2xl"
+        style="right: 0; left: auto;"
       >
         <!-- Header -->
         <div class="flex items-center justify-between px-5 py-4" style="border-bottom: 1px solid rgba(139,94,60,0.1);">
@@ -191,9 +193,7 @@ const openChat = () => {
             Basket <span class="text-earth font-body text-sm font-normal">({{ cart.totalItems }})</span>
           </h2>
           <button @click="cart.closeCart()" class="text-earth hover:text-charcoal transition-colors">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-            </svg>
+            <Basket class="w-5 h-5"/>
           </button>
         </div>
         <!-- Items -->
@@ -252,7 +252,7 @@ const openChat = () => {
 </template>
 
 <style scoped>
-/* Styling untuk floating chat button */
+/* Styling floating chat button */
 .fixed {
   position: fixed;
   bottom: 1.5rem;
@@ -260,7 +260,7 @@ const openChat = () => {
   z-index: 50;
 }
 
-/* Animasi untuk badge notifikasi */
+/* Animasi badge notifikasi */
 @keyframes pulse {
   0%, 100% {
     opacity: 1;
