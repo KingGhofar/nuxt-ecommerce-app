@@ -10,6 +10,8 @@ const chatOpen = ref(true)
 const detailsOpen = ref(false)
 const isTyping = ref(false)
 const showBanner = ref(true)
+const router = useRouter()
+const step = ref<number>(1)
 
 interface Message {
   id: number
@@ -144,10 +146,13 @@ onMounted(scrollToBottom)
       <div v-else class="space-y-4">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <NuxtLink to="/" class="flex items-center gap-2 text-black transition-colors">
-                <ArrowLeft class="w-5 h-5" />
-                <span class="text-lg font-semibold text-strong-800">Back</span>
-            </NuxtLink>
+            <button
+              class="flex items-center gap-2 text-black transition-colors"
+              @click="step === 1 ? router.back() : step--"
+            >
+              <ArrowLeft class="w-5 h-5" />
+              <span class="text-lg font-semibold text-strong-800">Back</span> 
+            </button>
           </div>
           <button
             @click="closeChat"

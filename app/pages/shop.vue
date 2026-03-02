@@ -2,6 +2,8 @@
 import { ref, computed } from 'vue'
 import { useCartStore } from '../stores/cart'
 import { useProducts } from '../composables/useProducts'
+import Search from '../components/svg/Search.vue'
+import PlusAdd from '~/components/svg/PlusAdd.vue'
 
 const cart = useCartStore()
 const { products, categories } = useProducts()
@@ -56,19 +58,15 @@ function addToCart(product: any) {
 
 <template>
   <div class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
     <!-- Page Header -->
     <div class="mb-10">
       <h1 class="font-display text-4xl md:text-5xl font-bold text-charcoal">Fresh Market</h1>
     </div>
-
-    <!-- Search + Sort Bar -->
+    <!-- Search -->
     <div class="flex flex-col sm:flex-row gap-4 mb-6">
       <!-- Search -->
       <div class="relative flex-1">
-        <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-earth-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-        </svg>
+        <Search class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-earth-50" />
         <input
           v-model="search"
           type="text"
@@ -82,7 +80,6 @@ function addToCart(product: any) {
         <option v-for="opt in sortOptions" :key="opt.value" :value="opt.value">{{ opt.label }}</option>
       </select>
     </div>
-
     <!-- Category Filter -->
     <div class="flex flex-wrap gap-2 mb-8">
       <button
@@ -94,14 +91,12 @@ function addToCart(product: any) {
         {{ cat }}
       </button>
     </div>
-
     <!-- Results Count -->
     <p class="font-body text-sm text-earth mb-6">
       Showing <strong>{{ filteredProducts.length }}</strong> {{ filteredProducts.length === 1 ? 'product' : 'products' }}
       <span v-if="activeCategory !== 'All'"> in <em>{{ activeCategory }}</em></span>
       <span v-if="search"> for "<em>{{ search }}</em>"</span>
     </p>
-
     <!-- Products Grid -->
     <div v-if="filteredProducts.length > 0" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       <div
@@ -119,7 +114,6 @@ function addToCart(product: any) {
           </span>
           <span v-if="!product.inStock" class="badge absolute top-3 right-3 bg-red-100 text-red-600">Out of Stock</span>
         </div>
-
         <!-- Content -->
         <div class="p-4">
           <div class="flex items-start justify-between mb-1">
@@ -136,31 +130,24 @@ function addToCart(product: any) {
             </div>
             <span class="font-body text-xs text-earth-50">{{ product.rating }} ({{ product.reviews }})</span>
           </div>
-
-          <!-- Price + CTA -->
+          <!-- Price -->
           <div class="flex items-center justify-between">
             <div>
               <span class="font-display font-bold text-forest text-lg">${{ product.price.toFixed(2) }}</span>
             </div>
-
             <button
               @click="addToCart(product)"
               :disabled="!product.inStock"
               class="relative w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-40"
               :class="addedIds.has(product.id) ? 'bg-leaf text-cream scale-110' : 'bg-forest text-cream hover:bg-forest-light hover:scale-110'"
             >
-              <svg v-if="!addedIds.has(product.id)" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-              </svg>
-              <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-              </svg>
+              <PlusAdd v-if="!addedIds.has(product.id)" class="w-4 h-4"/>
+              <PlusAdd v-else class="w-4 h-4"/>
             </button>
           </div>
         </div>
       </div>
     </div>
-
     <!-- Empty State -->
     <div v-else class="text-center py-24">
       <span class="text-6xl block mb-4">🔍</span>
@@ -170,6 +157,5 @@ function addToCart(product: any) {
         Clear Filters
       </button>
     </div>
-
   </div>
 </template>

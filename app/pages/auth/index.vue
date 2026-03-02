@@ -2,6 +2,7 @@
 import Facebook from '~/components/svg/Facebook.vue';
 import Google from '~/components/svg/Google.vue';
 import ArrowLeft from '~/components/svg/ArrowLeft.vue'
+import CircleCheck from '~/components/svg/CircleCheck.vue';
 
 definePageMeta({ 
   layout: 'auth',
@@ -85,10 +86,8 @@ useSeoMeta({ title: 'Masuk — Cungpruy', robots: 'noindex' })
           </p>
           <ul class="space-y-2">
             <li v-for="(feat, index) in ['Lacak pesanan secara real-time', 'Riwayat belanja tersimpan', 'Notifikasi stok produk favorit', 'Checkout lebih cepat']" :key="index" class="flex items-center gap-2.5">
-              <div class="w-4 h-4 rounded-full bg-sage-20 flex items-center justify-center flex-shrink-0">
-                <svg class="w-2.5 h-2.5 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
-                </svg>
+              <div class="rounded-full flex items-center justify-center flex-shrink-0">
+                <CircleCheck class="w-5 h-5 text-sage"/>
               </div>
               <span class="font-body text-sm text-cream/90">{{ feat }}</span>
             </li>

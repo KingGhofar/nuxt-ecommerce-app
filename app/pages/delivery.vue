@@ -4,12 +4,12 @@ import TruckDelivery from '../components/svg/TruckDelivery.vue';
 import HomeBolt from '../components/svg/HomeBolt.vue';
 import Package from '../components/svg/Package.vue';
 import Schedule from '../components/svg/Schedule.vue';
+import ChevronDown from '../components/svg/ChevronDown.vue';
 useSeoMeta({ title: 'Delivery Info — Cungpruy' })
 </script>
 
 <template>
   <div>
-    <!-- Hero -->
     <section class="bg-cream-dark py-16">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <TruckDelivery class="w-12 h-12 mx-auto mb-4" />
@@ -17,10 +17,7 @@ useSeoMeta({ title: 'Delivery Info — Cungpruy' })
         <p class="font-body text-earth text-lg max-w-xl mx-auto">We handle everything from harvest to your front door. Here's how it works.</p>
       </div>
     </section>
-
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
-
-      <!-- How It Works -->
       <div>
         <h2 class="section-title mb-8">How It Works</h2>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -100,7 +97,6 @@ useSeoMeta({ title: 'Delivery Info — Cungpruy' })
           </div>
         </div>
       </div>
-
       <!-- Packaging -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="bg-leaf-10 rounded-2xl p-8">
@@ -116,7 +112,6 @@ useSeoMeta({ title: 'Delivery Info — Cungpruy' })
           <p class="font-body text-sm text-earth">Enter your postcode at checkout to confirm coverage.</p>
         </div>
       </div>
-
       <!-- FAQ -->
       <div>
         <h2 class="section-title mb-8">FAQs</h2>
@@ -129,9 +124,7 @@ useSeoMeta({ title: 'Delivery Info — Cungpruy' })
           ]" :key="faq.q" class="bg-white rounded-xl border border-earth-10 overflow-hidden group">
             <summary class="flex items-center justify-between p-5 cursor-pointer font-body font-medium text-charcoal hover:text-forest transition-colors list-none">
               {{ faq.q }}
-              <svg class="w-5 h-5 text-earth group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-              </svg>
+              <ChevronDown class="w-5 h-5 text-earth group-open:rotate-180 transition-transform"/>
             </summary>
             <div class="px-5 pb-5">
               <p class="font-body text-earth leading-relaxed">{{ faq.a }}</p>
@@ -139,8 +132,6 @@ useSeoMeta({ title: 'Delivery Info — Cungpruy' })
           </details>
         </div>
       </div>
-
-      <!-- CTA -->
       <div class="text-center py-8">
         <NuxtLink to="/shop" class="btn-primary text-base px-10 py-4">Start Shopping</NuxtLink>
       </div>

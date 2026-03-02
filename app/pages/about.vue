@@ -18,7 +18,6 @@ const farms = [
 
 <template>
   <div>
-    <!-- Hero -->
     <section class="bg-forest py-24 relative overflow-hidden">
       <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 70% 50%, #87A96B 0%, transparent 60%)"></div>
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
@@ -30,7 +29,6 @@ const farms = [
         </p>
       </div>
     </section>
-
     <!-- Story -->
     <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -44,12 +42,11 @@ const farms = [
           </div>
         </div>
         <div class="grid grid-cols-2 gap-4">
-          <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=360&q=75" alt="Farm" class="rounded-2xl h-56 w-full object-cover" />
-          <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=360&q=75" alt="Harvest" class="rounded-2xl h-56 w-full object-cover mt-8" />
+          <img loading="lazy" decoding="async" src="https://i.pinimg.com/736x/5b/8d/b1/5b8db1ec953fbcfb03ae03131ff8202a.jpg" alt="Farm" class="rounded-2xl h-56 w-full object-cover" />
+          <img loading="lazy" decoding="async" src="https://i.pinimg.com/736x/eb/33/f6/eb33f67e26bad7835c0dc18895ca1853.jpg" alt="Harvest" class="rounded-2xl h-56 w-full object-cover mt-8" />
         </div>
       </div>
     </section>
-
     <!-- Values -->
     <section class="bg-cream-dark py-16">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -68,7 +65,6 @@ const farms = [
         </div>
       </div>
     </section>
-
     <!-- Team -->
     <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="mb-12">
@@ -83,8 +79,6 @@ const farms = [
         </div>
       </div>
     </section>
-
-    <!-- Farm Partners -->
     <section class="py-16 bg-forest">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
@@ -103,8 +97,6 @@ const farms = [
         </div>
       </div>
     </section>
-
-    <!-- CTA -->
     <section class="py-20 text-center max-w-2xl mx-auto px-4">
       <h2 class="section-title mb-4">Ready to Taste the Difference?</h2>
       <p class="font-body text-earth mb-8">Join 1,000+ households who've made the switch to genuinely fresh produce.</p>
