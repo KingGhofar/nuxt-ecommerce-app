@@ -29,7 +29,7 @@ export const useProducts = () => {
     {
       id: 3,
       name: 'Organic Lettuce',
-      description: 'Crisp, fresh green lettuce',
+      description: 'Crisp and fresh organic lettuce, perfect for salads',
       price: 3.49,
       image: 'https://i.pinimg.com/736x/24/8d/b4/248db4a3075ad85129afc207eb5a017f.jpg',
       category: 'Vegetables',
