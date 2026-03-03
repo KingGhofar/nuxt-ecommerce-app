@@ -2,7 +2,6 @@
 import Facebook from '~/components/svg/Facebook.vue';
 import Google from '~/components/svg/Google.vue';
 import ArrowLeft from '~/components/svg/ArrowLeft.vue'
-import CircleCheck from '~/components/svg/CircleCheck.vue';
 
 definePageMeta({ 
   layout: 'auth',
@@ -74,24 +73,21 @@ useSeoMeta({ title: 'Masuk — Cungpruy', robots: 'noindex' })
         </div>
       </div>
       <!-- Right side -->
-      <div class="hidden md:block md:w-1/2 relative bg-forest overflow-hidden flex flex-col justify-between p-12">
-        <!-- Content -->
+      <div class="hidden md:block md:w-1/2 relative overflow-hidden flex flex-col justify-between p-12"
+          :style="{ 
+            backgroundImage: 'url(/images/bg-auth.jpg)', 
+            backgroundSize: 'cover', 
+            backgroundPosition: 'center' 
+          }">
+        <div class="absolute inset-0 bg-black/50"></div>
         <div class="relative z-10">
           <h2 class="font-display text-3xl font-bold text-cream mb-3 leading-tight">
             Sayuran Segar,<br>
             <span style="color: #a3be8c;">Langsung ke Pintumu</span>
           </h2>
-          <p class="font-body text-sm leading-relaxed mb-5 text-cream/80">
+          <p class="font-body text-lg leading-relaxed mb-5 text-cream/80">
             Buat akun dan nikmati kemudahan belanja sayuran organik dari petani lokal terpercaya.
           </p>
-          <ul class="space-y-2">
-            <li v-for="(feat, index) in ['Lacak pesanan secara real-time', 'Riwayat belanja tersimpan', 'Notifikasi stok produk favorit', 'Checkout lebih cepat']" :key="index" class="flex items-center gap-2.5">
-              <div class="rounded-full flex items-center justify-center flex-shrink-0">
-                <CircleCheck class="w-5 h-5 text-sage"/>
-              </div>
-              <span class="font-body text-sm text-cream/90">{{ feat }}</span>
-            </li>
-          </ul>
         </div>
       </div>
     </div>
