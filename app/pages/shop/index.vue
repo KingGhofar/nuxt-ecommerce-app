@@ -149,13 +149,5 @@ function addToCart(product: any) {
         </div>
       </div>
     </div>
-    <div v-else class="text-center py-24">
-      <span class="text-6xl block mb-4">🔍</span>
-      <h3 class="font-display text-2xl font-semibold text-charcoal mb-2">Nothing found</h3>
-      <p class="font-body text-earth mb-6">Try a different search term or category</p>
-      <button @click="search = ''; activeCategory = 'All'" class="btn-outline">
-        Clear Filters
-      </button>
-    </div>
   </div>
 </template>
