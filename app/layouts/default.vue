@@ -32,7 +32,7 @@ const openChat = () => {
     <header class="sticky top-0 z-40 bg-cream shadow-sm border">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
         <!-- Logo -->
-        <NuxtLink to="/" class="flex items-center gap-2">
+        <NuxtLink to="/dashboard" class="flex items-center gap-2">
           <span class="font-display text-xl font-bold text-forest">Cungpruy</span>
         </NuxtLink>
         <nav class="hidden md:flex items-center gap-8">

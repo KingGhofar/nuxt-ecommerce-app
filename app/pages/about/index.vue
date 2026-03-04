@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Map from '../components/svg/Map.vue';
+import Map from '~/components/svg/Map.vue';
 useSeoMeta({ title: 'Our Story — Cungpruy' })
 
 const team = [

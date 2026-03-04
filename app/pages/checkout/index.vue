@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
-import ArrowLeft from '../components/svg/ArrowLeft.vue'
-import { useCartStore } from '../stores/cart'
+import ArrowLeft from '~/components/svg/ArrowLeft.vue'
+import { useCartStore } from '../../stores/cart'
 
 const cart = useCartStore()
 const router = useRouter()

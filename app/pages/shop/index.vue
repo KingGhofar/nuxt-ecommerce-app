@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { useCartStore } from '../stores/cart'
-import { useProducts } from '../composables/useProducts'
-import Search from '../components/svg/Search.vue'
+import { useCartStore } from '../../stores/cart'
+import { useProducts } from '../../composables/useProducts'
+import Search from '~/components/svg/Search.vue'
 import PlusAdd from '~/components/svg/PlusAdd.vue'
 import ChevronDown from '~/components/svg/ChevronDown.vue'
 
