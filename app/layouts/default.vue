@@ -62,7 +62,7 @@ const openChat = () => {
             <span class="sm:hidden">Cart</span>
             <span
               v-if="cart.totalItems > 0"
-              class="absolute -top-1.5 -right-1.5 w-5 h-5 bg-gold text-white text-xs rounded-full flex items-center justify-center font-bold"
+              class="absolute -top-1.5 -right-1.5 w-5 h-5 bg-blue-500 text-white text-xs rounded-full flex items-center justify-center font-bold"
             >{{ cart.totalItems }}</span>
           </button>
           <!-- Mobile Login -->

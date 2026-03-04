@@ -27,9 +27,9 @@ useSeoMeta({ title: 'Masuk — Cungpruy', robots: 'noindex' })
         </button>
         <div class="mt-32 md:mt-36 lg:mt-40 flex flex-col items-center">
           <!-- Logo -->
-          <NuxtLink to="/" class="flex items-center gap-2.5 mb-6">
+          <p class="flex items-center gap-2.5 mb-6">
             <span class="font-display font-bold text-charcoal text-lg sm:text-xl">Cungpruy</span>
-          </NuxtLink>
+          </p>
           <p class="font-display text-2xl sm:text-3xl font-bold text-black text-center mb-8 sm:mb-12">
             Welcome to Cungpruy!
           </p>
