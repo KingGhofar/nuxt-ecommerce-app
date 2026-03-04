@@ -6,8 +6,8 @@ import TruckDelivery from '~/components/svg/TruckDelivery.vue'
 import HandShake from '~/components/svg/HandShake.vue'
 import PlusAdd from '~/components/svg/PlusAdd.vue'
 import ArrowNarrowRight from '~/components/svg/ArrowNarrowRight.vue'
-import { useCartStore } from '../../stores/cart'
-import { useProducts } from '../../composables/useProducts'
+import { useCartStore } from '../stores/cart'
+import { useProducts } from '../composables/useProducts'
 
 const cart = useCartStore()
 const { featured } = useProducts()
